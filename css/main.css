@@ -72,7 +72,7 @@ ol{
 	list-style-type: none;
 }
 [class*="center"] h1{
-	color: #05414b;
+	color: #2B605E;
 }
 [class*="left"] h1{
 	color: #17a2b8;
@@ -101,7 +101,7 @@ ol{
 	opacity: 0.6;
 	transition-duration: 0.4s;
 	transition-timing-function: ease-in-out;
-	border:1px solid #105940;
+	border:2px solid  #2B605E;
 	padding: 10px 10px;
 	font-size:1rem;
 	line-height:1.5;
@@ -115,13 +115,13 @@ ol{
 	opacity: 0.9;
 }
 .btn-outline-info{
-	border-color:#05414b;
+	border-color: #2B605E;
 }
 .btn:hover,.btn:active,.btn:focus{
 	text-decoration: none;
 	color: #ffffff;
-	border-color: #05414b;
-	background-color:#05414b;
+	border-color:  #2B605E;
+	background-color: #2B605E;
 }
 /*SERVICES
 #services h2,h3,h4,h5,h6,p, #about h2,h 3,h4,h5,h6,p{
