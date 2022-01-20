@@ -25,7 +25,10 @@ body{
 	height: 80px;
 	width:80px;	
 }
-#signup, #signin{
+#contact{
+	margin-top: 100px;
+}
+#signup, #signin, #contactform, #contactinfo{
 	background-color: #deeceab7;
 	box-shadow: 1px 1px 3px rgba(148, 231, 211, 0.2);
 	margin: auto;
@@ -46,7 +49,7 @@ body{
 	border:1px solid #ffffff;
 	
 }
-input{	
+input, textarea{	
 	margin: auto;
 	margin-top: 20px;
 	border:1px solid #ffffff;
@@ -65,8 +68,22 @@ label{
 	margin:0 10px ;
 	padding: 0 10px;
 }
+#contactinfo{
+
+	margin-bottom: 20px;
+	padding: 5px;
+}
+#contactform{
+	margin-top:30px;
+	padding: 30px 12px;
+}
+#contactform #msg{
+	height: 70px;
+	max-height: 100px;
+}
 .btn-primary{
 	font-size: 14px;
+	width:150px;
 	font-weight: bold;
 	padding: 12px;
 	color: #ffffff;
@@ -85,7 +102,7 @@ label{
 	body{
 		background-image:url('../img/media600leafbg.png');
 	}
-	#signup, #signin{
+	#signup, #signin, #contactform{
 		margin: auto;
 		padding: 10px;
 		width: auto;
