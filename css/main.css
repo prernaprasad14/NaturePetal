@@ -138,37 +138,36 @@ ul{
 .btn1{
 	display: block;
 	text-align:center;	
-	width: 110px;
+	width: 150px;
 	margin: auto;
 	margin-top: 40px;
-	color: #05414b;
 	transform: translateZ(0);
 	backface-visibility: hidden;
-	font-weight:400;
-	opacity: 0.6;
+	font-weight:800;
+	opacity: 1;
 	transition-duration: 0.4s;
 	transition-timing-function: ease-in-out;
-	border:2px solid  #2B605E;
+	background-color: #f8f8f8;
+	color: #2d615f;
 	padding: 10px 10px;
 	font-size:1rem;
 	line-height:1.5;
-	border-radius:.25rem;
+	border-radius:8px;
 	transition:color .15s ease-in-out,
 	background-color .15s ease-in-out,
 	border-color .15s ease-in-out,
 	box-shadow .15s ease-in-out;
 }
-.btn:hover,.btn:active,.btn:focus{
-	opacity: 0.9;
-}
 .btn-outline-info{
-	border-color: #2B605E;
+	border-color: #ffffff;
 }
 .btn:hover,.btn:active,.btn:focus{
+	opacity:0.95;
 	text-decoration: none;
-	color: #ffffff;
-	border-color:  #2B605E;
-	background-color: #2B605E;
+	color: #f7f7f7;
+	border-color:  2px #ffffff solid;
+	background-color: #2d615f76;
+
 }
 /*SERVICES
 #services h2,h3,h4,h5,h6,p, #about h2,h 3,h4,h5,h6,p{
@@ -416,6 +415,23 @@ footer .rights .text-center{
 @media (min-width:768px){
 	#intro .head{
 		color: cadetblue;
+	}
+	.btn1{
+		text-shadow: none;
+		width: 130px;
+		opacity: 0.6;
+		font-weight: 500;
+		padding: 10px 8px;
+		border:2px solid  #2B605E;
+		color: #05414b;
+	}
+	.btn-outline-info{
+		border-color: #2B605E;
+	}
+	.btn:hover,.btn:active,.btn:focus{
+		color: #ffffff;
+		border-color:  #2B605E;
+		background-color: #2B605E;
 	}
 	.carousel-item{
 		height: auto;
