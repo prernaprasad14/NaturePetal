@@ -77,7 +77,14 @@ body{
 	margin: auto;
 }
 
-
+#intro .head{
+	color: #edeee4;
+	margin-top: 100px;
+	padding: 160px 10px ;
+	height:500px;
+	font-weight: 700;
+	/* background-color:#d4dcdd84; */
+}
 .carousel-item{
 	height: 100vh;
 }
@@ -179,6 +186,9 @@ ul{
 	margin-bottom: 50px;
 	text-align: center;
 
+}
+#new-arrivals{
+	margin-top: 50px;
 }
 .gallery-block .heading h2{
 	font-size:1.4rem;
@@ -404,7 +414,9 @@ footer .rights .text-center{
 
 }
 @media (min-width:768px){
-
+	#intro .head{
+		color: cadetblue;
+	}
 	.carousel-item{
 		height: auto;
 	}
@@ -456,6 +468,13 @@ footer .rights .text-center{
 	.size3 .slide-9 img{
 		width: 100%;
 		content: url('../img/slide-md-9.png')
+	}
+	#new-arrivals{
+		margin-top: 100px;
+	}
+	.gallery-block .heading{
+		padding: 10px;
+		margin: 50px;
 	}
 }
 @media (min-width:991px){
