@@ -167,7 +167,42 @@ ul{
 	color: #f7f7f7;
 	border-color:  2px #ffffff solid;
 	background-color: #2d615f76;
-
+}
+.btn2{
+	display: block;
+	text-align:center;	
+	width: 120px;
+	margin: auto;
+	margin-top: 40px;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+	font-weight:500;
+	opacity: 0.6;
+	transition-duration: 0.4s;
+	transition-timing-function: ease-in-out;
+	background-color: #f8f8f8;
+	color: #2d615f;
+	padding: 10px 4px;
+	font-size:1rem;
+	line-height:1.5;
+	border-radius:8px;
+	border: 2px #2d615f solid;
+	transition:color .15s ease-in-out,
+	background-color .15s ease-in-out,
+	border-color .15s ease-in-out,
+	box-shadow .15s ease-in-out;
+}
+.btn2:hover,.btn2:active,.btn2:focus{
+	opacity:0.95;
+	text-decoration: none;
+	color: #f7f7f7;
+	border:  2px #2d615f solid;
+	background-color: #2d615f;
+}
+#sale-products > div>a .btn1{
+	background-color: none;
+	border:2px #2d615f solid;
+	color: #2d615f;
 }
 /*SERVICES
 #services h2,h3,h4,h5,h6,p, #about h2,h 3,h4,h5,h6,p{
@@ -221,7 +256,117 @@ ul{
 	margin-bottom: 30px;
 	box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
 }
-
+/* signin signup forms */
+.account-form div.logo-main-v img{
+	display: block;
+	margin: auto;
+    margin-top: 30px;  
+	padding:12px;
+	height: 80px;
+	width:80px;	
+}
+.account-form{
+	font-family: 'Open Sans', sans-serif;
+	background-image:url('../img/media600leafbg.png');
+	background-repeat: no-repeat;	
+	height:100%;
+	overflow-x: hidden;
+	/* background-color: #17a2b8; */
+	background-position: center;
+	background-size: cover;
+}
+.account-form form, #contactform{
+	margin: auto;
+	background-color: #c9e1ddb7;
+	box-shadow: 1px 1px 3px rgba(148, 231, 211, 0.2);
+	padding: 10px;
+	width: 90vw;
+	border-radius: 10px;
+}
+.form-inline{
+	width:380px;
+	margin:auto;
+}
+.form-inline input{
+	margin: auto;
+	border-radius:5px; 
+	height: 50px;
+	width:160px !important;
+	padding: 12px;
+	border:1px solid #ffffff;
+	
+}
+.account-form>div form input, textarea{	
+	margin: auto;
+	margin-top: 20px;
+	border:1px solid #ffffff;
+	height: 50px;
+	width:350px;
+	padding: 12px;
+	display: block;
+	border-radius:5px; 
+}
+.account-form>div form #check{
+	margin: 6px 2px 0 30px;
+	height:auto;
+	width: auto;
+}
+.account-form>div form #check+label{
+	margin:0 10px ;
+	padding: 0 10px;
+}
+.btn-primary{
+	font-size: 14px;
+	width:150px;
+	font-weight: bold;
+	padding: 12px;
+	color: #ffffff;
+	background-color: #8BCF7B !important;
+	border:2px solid #8BCF7B !important;
+	border-radius: 4px;
+	margin: 20px auto;
+}
+.btn-primary:hover,.btn-primary:active,.btn-primary:focus{
+	background-color: #2B605E !important;
+	border:2px solid  #2B605E !important;
+	box-shadow: 2px 3px 5px rgba(0,0,0,0.2);	
+	transition: 0.2s ease-in-out;
+}
+/* contact form */
+#contact{
+	margin-top: 100px;
+}
+#contactinfo{
+	margin-bottom: 20px;
+	padding: 5px;
+}
+#contactform{
+	margin-top:30px;
+	padding: 30px 12px;
+}
+#contactform #msg{
+	height: 70px;
+	max-height: 100px;
+}
+input, textarea{	
+	margin: auto;
+	margin-top: 20px;
+	border:1px solid #ffffff;
+	height: 50px;
+	width:350px;
+	padding: 12px;
+	display: block;
+	border-radius:5px; 
+}
+#check{
+	margin: 6px 10px;
+	height:auto;
+	width: auto;
+}
+label{
+	margin:0 10px ;
+	padding: 0 10px;
+}
 /*footer*/
 .logo img{
 	padding:5px 5px;
@@ -308,6 +453,15 @@ footer .rights .text-center{
 	margin-bottom: -10px;
 }
 @media (min-width:500px){	
+	.account-form>div form #check{
+		margin: 6px 2px 0 30px;
+		height:auto;
+		width: auto;
+	}
+	.account-form>div form #check+label{
+		margin:0 15px ;
+		padding: 0 20px;
+	}
 	.size1{
 	    height:190px;
 		width: 420px;
@@ -356,6 +510,27 @@ footer .rights .text-center{
 	}
 }
 @media(min-width: 576px){
+	.account-form{
+		background-image: url('../img/leafbg.png');
+		background-repeat: no-repeat;	
+		height:100vh;
+		width: auto;
+		background-position: center;
+		background-size: cover;
+	}
+	#contactform{
+		height: fit-content;
+		width: 500px;
+	}
+	.account-form>div{
+		margin: auto;
+		width: 500px;
+	}
+	.account-form form{
+		width:500px;
+		padding: 10px;
+		border-radius: 10px;
+	}
 	.gallery-block .transform-on-hover{
 		transition: 0.15s ease-in-out;
 		background-color: white;
@@ -369,7 +544,6 @@ footer .rights .text-center{
 	}
 }
 @media (min-width:734px){
-
 	.size1{		
 		height:200px;
 		width: 298px;
@@ -382,7 +556,6 @@ footer .rights .text-center{
 	    height:325px;
 		width: 767px;
 	}
-
 	.size1 .slide-1 img{
 		content: url('../img/slide-sm-1.png')
 	}
@@ -410,7 +583,6 @@ footer .rights .text-center{
 	.size3 .slide-9 img{
 		content: url('../img/slide-sm-9.png')
 	}
-
 }
 @media (min-width:768px){
 	#intro .head{
