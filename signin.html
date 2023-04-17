@@ -11,16 +11,16 @@
 
 </head>
 <body class="account-form">
+
 	<div>
-		<div class="logo-main-v">
+		<div class="logo-form">
 			<a href="index.html">
-				<img src="img/logo-w.png">
+				<img src="img/logo-main-v.svg">
 			</a>
 		</div>
-		<form  class="text-center" action="index.html" method="POST">
-			<h4 class="text-center">Sign in</h4>
-			<input type="email" name="email" required="true" placeholder="Email" >
-			<input type="password" name="pswd" required="true" placeholder="Password" >
+		<form class="text-center" action="index.html" method="POST">
+			<input class="form-control" type="email" name="email" required="true" placeholder="Email" >
+			<input class="form-control" type="password" name="pswd" required="true" placeholder="Password" >
 			<p id="textmsg"></p>
 			<div clas="form-group">
 				<label class="form-check-label" for="check">By continuing, you agree to NaturePetal's <a href="#">Conditions of Use</a> and <a href="#">Privacy Notice</a>.</label>
@@ -28,6 +28,9 @@
 			<button class="btn-primary" type="submit" value="" id="signinbtn" name="">Sign in</button>
 			<p id="newuser">New user?<a href="signup.html">&nbsp;Sign up</a></p>
 		</form>
+	</div>
+	<div class="row rights">
+		<p>All Rights Reserved. Copyright NaturePetal©<span id="curryear">2022</span></p>
 	</div>
 
 </body>
