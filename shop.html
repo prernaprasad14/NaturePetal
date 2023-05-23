@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<head>
+    <title>
+		Shop at Nature Petal | Nature Petal
+	</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/favicon.png">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+</head>
+<body data-spy="scroll" data-target="#navbarResponsive">
+    <div id="home">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark" >
+			<a href="index.html" class="logo-nav">
+				<img src="img/logo-main-h.svg" alt="nature-petal-logo">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"	data-target="#navbarResponsive">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item ">
+						<a class="nav-link" href="shop.html">Shop</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.html#onsale">Events</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.html#stores">Stores</a>
+					</li>	
+					<li class="nav-item">
+						<a class="nav-link" href="signin.html">Sign in</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="about.html">About<i class="fa fa-star"></i></a>
+ 					</li>					
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<div>
+		<div id="shop-banner" class="carousel slide" data-ride="carousel" data-interval="4500"  data-pause="false">
+			<ul>
+				<li data-target="#shop-banner" data-slide-to="0" class="active"></li>
+				<li data-target="#shop-banner" data-slide-to="1"></li>
+				<li data-target="#shop-banner" data-slide-to="2"></li>
+			</ul>
+			<div class="carousel-inner" role="listbox">
+			<div class="carousel-item active">
+				<img src="img/Artboard 4.png"/>
+			</div>
+			<div class="carousel-item ">
+				<img src="img/Artboard 2.png"/>
+			</div>
+			<div class="carousel-item ">
+				<img src="img/Artboard 5.png"/>
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#shop-banner" data-slide="prev">
+			<span class="carousel-control-prev-icon"></span>
+		  </a>
+		  <a class="carousel-control-next" href="#shop-banner" data-slide="next">
+			<span class="carousel-control-next-icon"></span>
+		  </a>
+	</div>
+</div>
+	<section id="shop" class="gallery-block cards-gallery">
+		
+		<div class="heading">
+			<h2>Shop products</h2>
+		</div>
+		<div class="row pl-5 pr-5">
+			<div class="col-xs  col-sm-12  col-lg-2 filter-menu"  style="z-index:100;">
+				<h5>Filters</h5>
+			</div>
+			
+			<div class="col-xs col-sm-12 col-lg-10">
+				<div class="container-fluid">
+					<div id="result-count"></div>
+					<div class="row" id="products"></div>
+				</div>
+			</div>			
+		</div>
+	
+	</section>
+
+	<footer>
+		<div class="row padding">
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
+				<div class="logo">
+					<a href="#home">
+						<img src="img/logo-main-v.svg" alt="nature-petal-logo"> 
+					</a>
+				</div>					
+				<div class="social-media">	
+					<a href="#"><i class="fa fa-facebook-square"></i></a>
+					<a href="#"><i class="fab fa-youtube"></i></a>
+					<a href="#"><i class="fa fa-instagram"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+				</div>		
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center  footer-content">
+				<a href="#">OFFERS & EVENT</a>
+				<a href="#">CUSTOMER SERVICE</a>
+				<a href="about.html">BRAND STORY</a>
+				<a href="#">CAREER</a>					
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3  text-center  footer-content">
+				<a href="#">PRIVACY POLICY</a>
+				<a href="about.html#contact">CONTACT US</a>
+				<a href="#">CAMPAIGN</a>				
+				<a href="#">TERMS & CONDITIONS</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center  footer-content">
+				<a href="#">STORES</a>
+				<a href="#">STORE NOTICE</a>
+				<a href="#">REVIEW</a>
+				<a href="#">FAQS</a>
+			</div>	
+			<div class="row rights">
+					<p>All Rights Reserved. Copyright NaturePetal©<span id="curryear">2023</span></p>
+			</div>
+		</div>		
+	</footer>
+
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+	
+	<script>
+		$(document).ready(function() {
+			
+
+			var products = document.getElementById('products');
+			var productArray = [
+				{name: 'Avocado Soap bar', src:'img/nature-petal-avocado-soap.jpg'},
+				{name: 'Cherry Blossom Body Lotion', src:'img/nature-petal-cherry-blossom-lotion.jpg'},
+				{name: 'Green Tea Body Lotion', src:'img/nature-petal-green-tea-lotion.jpg'},
+				{name: 'Honey Soap bar', src:'img/nature-petal-honey-soap.jpg'},
+				{name: 'Avocado Soap bar', src:'img/nature-petal-avocado-soap.jpg'},
+				{name: 'Honey Soap bar', src:'img/nature-petal-honey-soap.jpg'},
+				{name: 'Green Tea Body Lotion', src:'img/nature-petal-green-tea-lotion.jpg'},
+				{name: 'Cherry Blossom Body Lotion', src:'img/nature-petal-cherry-blossom-lotion.jpg'},
+				{name: 'Avocado Soap bar', src:'img/nature-petal-avocado-soap.jpg'},
+				{name: 'Green Tea Body Lotion', src:'img/nature-petal-green-tea-lotion.jpg'},
+				{name: 'Honey Soap bar', src:'img/nature-petal-honey-soap.jpg'},
+				{name: 'Cherry Blossom Body Lotion', src:'img/nature-petal-cherry-blossom-lotion.jpg'},
+				{name: 'Avocado Soap bar', src:'img/nature-petal-avocado-soap.jpg'},
+				{name: 'Honey Soap bar', src:'img/nature-petal-honey-soap.jpg'},
+				{name: 'Green Tea Body Lotion', src:'img/nature-petal-green-tea-lotion.jpg'},
+				{name: 'Cherry Blossom Body Lotion', src:'img/nature-petal-cherry-blossom-lotion.jpg'},
+				{name: 'Honey Soap bar', src:'img/nature-petal-honey-soap.jpg'},
+				{name: 'Avocado Soap bar', src:'img/nature-petal-avocado-soap.jpg'},
+				{name: 'Cherry Blossom Body Lotion', src:'img/nature-petal-cherry-blossom-lotion.jpg'},
+			];
+			var resultCount = `Total ${ productArray.length} search results`;
+			$('#result-count').append(resultCount);
+			$('#result-count').css({
+				'background-color' : '#F8F9F6',
+				'padding':'5px',
+				'font-weight' : '600',
+				'margin' : '4px 0',
+				'color' : '#676869',
+				'font-size' : '16px',
+				'display' : 'flex',
+				'justify-content' : 'center',
+				'border-radius' : '4px',
+
+			});
+			var productCard ="";
+			for(let i=0; i<productArray.length; ++i){
+				let producetId = productArray[i].src.split(".")[0].substr(4);
+				productCard += `
+					<div class="col-sm-6 col-md-4 col-lg-3">
+						<div class="card-border-0 transform-on-hover">
+						<a class="" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
+							<img src="${productArray[i].src}" loading="lazy" alt="${productArray[i].name}" class="card-img-top">
+							</a>
+						<div class="card-body p-0">
+							<h6 class="ml-1 p-3">${productArray[i].name}</h6>	
+							<div class="icons text-right">
+								<div class="wishlist"><input type="checkbox" name="check${i}" id="${producetId}-${i}"><label for="${producetId}-${i}"><i class="fa fa-heart" aria-hidden="true" onclick=""></i>Wishlist</label></div>	
+								<div class="add-to-cart"><input type="checkbox"  name="${producetId}-${i}-add" id="${producetId}-${i}-add"><label for="${producetId}-${i}-add"><i class="fa-solid fa-cart-shopping" aria-hidden="true" onclick=""></i>Add&nbsp;to&nbsp;cart</label></div>	
+								</div>
+							</div>
+						</div>
+					</div>				
+				`;
+			}
+			$('#products').append(productCard);
+			
+			$(document).ready(function() {
+  // Function to check viewport width and apply styles
+  function checkViewportWidth() {
+    var viewportWidth = $(window).width();
+
+    // Check if viewport width is less than 600px
+    if (viewportWidth <= 500) {
+      // Apply styles for small screens
+      $('#products>div').css({'margin':'12px '});
+	  $('#products>div').css({
+				'border' : '2px solid #f1f2ff',
+				'border-radius' : '4px',
+				'padding': '12px',	
+		})
+    } 
+  }
+
+  // Call the function on page load
+  checkViewportWidth();
+
+  // Call the function whenever the window is resized
+  $(window).resize(function() {
+    checkViewportWidth();
+  });
+});
+
+			var container = document.createElement('div');
+			container.id = "wrapper";
+
+			$('body').append(container);
+			var categorgy = ["Soap", "Lotion"];
+			var html = '<div><ul>';
+
+			for(var i=0; i<categorgy.length; i++){
+				html+= `<li><input type="checkbox" name="checkbox${i}"/><label for="checkbox${i}">${categorgy[i]}</label></li>`;
+			}
+
+			html+= '</ul></div>';
+
+			$('.filter-menu').append(html);
+			$('.filter-menu div').css({
+				'padding' : '10px 3px ',
+				'margin' : '2px',
+				'border' : '2px solid grey',
+				'border-radius' : '5px',
+				'height' : '300px',
+			})
+
+			$('.filter-menu div ul li').css({
+				'display': 'flex',
+				'align-items':'center'
+			})
+
+			$('.filter-menu div input').css({
+				'margin':'0',
+				'margin': '4px 0',
+				'height':'20px',
+				'width': '20px',
+				'font-size' : '12px',
+			})
+		}); 
+	
+
+	</script>
+</body>
+
+</html>

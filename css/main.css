@@ -8,6 +8,141 @@ body{
 	-ms-user-select:none;
 	user-select:none;
 }
+.gallery-block{
+	padding: 30px 10px;
+}
+.gallery-block .heading{
+	margin:20px 10px;
+	text-align: center;
+}
+.gallery-block .heading h2{
+	font-size:1.4rem;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+.gallery-block .cards-gallery .card{
+	transition: 0.4s ease;
+}
+.gallery-block .cards-gallery .card img{
+	box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.gallery-block .cards-gallery a{
+	color: #212529;
+}
+.gallery-block .cards-gallery a:hover{
+	text-decoration: none;
+}
+.gallery-block .cards-gallery .card{
+	margin-bottom: 30px;
+	box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
+}
+#shop-banner{
+	position: relative;
+	top:-20px;
+	margin-top: 0;
+}
+#shop-banner .carousel-inner img{
+	width: 100%;
+}
+#shop .icons{
+	margin-top:-40px;
+	list-style-type: none;
+}
+#shop .icons{
+	width:50px;
+	position: relative;
+	display: inline-block;
+}
+#shop .icons input{
+	display: none;
+}
+#shop .icons label i{	
+	cursor: pointer;
+	margin-right: 5px;	
+}
+#shop .icons .wishlist input:checked+label>i{
+	color:#e53861;
+}
+#shop .icons .add-to-cart input:checked+label>i{
+	color:#3de07b;
+}
+#shop .container{
+	max-width: 900px;
+}
+#shop-banner .carousel-item{
+	z-index: -1;
+	min-height: 190px;
+	margin-top: 0;
+}
+#shop h5{
+	margin: 3px 70px 10px 70px;
+}
+#products .card-body>div{
+	display: flex;
+	margin: 0;
+	padding: 0;
+}
+#products .card-body>div label{
+	display: flex;
+	align-items: baseline;
+}
+.container.gallery-container {
+    background-color: #fff;
+    color: #35373a;
+    min-height: 100vh;
+    padding: 30px 50px;
+}
+.gallery-container h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: bold;
+}
+.tz-gallery {
+    padding: 40px;
+}
+.tz-gallery .row > div {
+    padding: 2px;
+}
+.tz-gallery .lightbox img {
+    width: 100%;
+    border-radius: 0;
+    position: relative;
+}
+.tz-gallery .lightbox:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -13px;
+    margin-left: -13px;
+    opacity: 0;
+    color: #fff;
+    font-size: 26px;
+    font-family: 'Glyphicons Halflings';
+    content: '\e003';
+    pointer-events: none;
+    z-index: 9000;
+    transition: 0.4s;
+}
+.tz-gallery .lightbox:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(46, 132, 206, 0.7);
+    content: '';
+    transition: 0.4s;
+}
+.tz-gallery .lightbox:hover:after,
+.tz-gallery .lightbox:hover:before {
+    opacity: 1;
+}
+.baguetteBox-button {
+    background-color: transparent !important;
+}
 
 .main{
 	max-width: 1200px;
@@ -30,15 +165,26 @@ body{
 	color: #ffffff;
 }
 .bg-dark{
-	background:#2B605E !important;
+	background:#095553 !important;
 }
 .navbar-nav li{
 	padding-right: 10px;
+	text-align: center;
+}
+.navbar-nav li:hover a{
+	color:#1a402d !important;
+	background-color: #e9ebcfc5;
+}
+.navbar-nav li:last-of-type i{
+	margin: 0px;
+	padding: 0 2px;
+	color: #68e062;
 }
 .navbar-dark .navbar-nav .nav-link{
 	color: #ffffff;
 	padding-top: 10px;
 }
+
 /*carousel*/
 #maincarousel{
 	position: relative;
@@ -190,22 +336,16 @@ ul{
 	border:  2px #2d615f solid;
 	background-color: #2d615f;
 }
-#sale-products > div>a .btn1{
-	background-color: none;
-	border:2px #2d615f solid;
-	color: #2d615f;
+#on-sale{
+	margin-top: 110px;
 }
-/*SERVICES
-#services h2,h3,h4,h5,h6,p, #about h2,h 3,h4,h5,h6,p{
-	color: #ffffff;
-}*/ 
 .padding{	
 	padding:10px 10px;
 }
 /*STORES*/
 .gallery-block{
-	padding-top: 60px;
-	padding-bottom: 60px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .gallery-block .heading{
 	margin-bottom: 50px;
@@ -213,28 +353,18 @@ ul{
 
 }
 #new-arrivals{
-	margin-top: 50px;
+	margin-top: 110px;
 }
 .gallery-block .heading h2{
 	font-size:1.4rem;
 	font-weight:bold;
 	text-transform:uppercase;
 }
-.gallery-block .card-gallery h6{
-	font-weight: bold;
-	font-size: 17px;
-}
 .gallery-block .cards-gallery .card{
-
 	transition: 0.4s ease;
 }
-.gallery-block .cards-gallery .card img{
-	box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-}
-.gallery-block .cards-gallery .card-body{
-	text-align: center;
-}
-.gallery-block .cards-gallery .card-body p{
+.gallery-block .cards-gallery .card-body h6{
+	text-align: center;	
 	font-size: 15px;
 }
 .gallery-block .cards-gallery a{
@@ -287,7 +417,7 @@ ul{
 	width: auto;
 	
 }
-account-form p{
+.account-form p{
 	margin:auto;
 	width: 200px;
 }
@@ -338,22 +468,45 @@ account-form p{
 	box-shadow: 2px 3px 5px rgba(0,0,0,0.2);	
 	transition: 0.2s ease-in-out;
 }
-/* contact form */
-#contact{
-	margin-top: 100px;
+/* about */
+#about-us{
+	width: 1400px;
+	margin: auto;
 }
+#developer-links{
+	width:700px;
+	margin: 20px auto 40px auto;
+	text-align: center;
+}
+#developer-links>div{
+	width:500px;
+	margin: auto;
+	
+}
+#developer-links a{
+	display: inline-block;
+	text-decoration: none;
+	margin: 0 5px;
+}
+#developer-links a.btn2{
+	padding: 5px;
+}
+/* contact form */
+/* #contact{
+	margin-top: 100px;
+} */
 #contactinfo{
 	margin-bottom: 20px;
 	padding: 5px;
 }
-#contactform{
+/* #contactform{
 	margin-top:30px;
 	padding: 30px 12px;
-}
-#contactform #msg{
+} */
+/* #contactform #msg{
 	height: 70px;
 	max-height: 100px;
-}
+} */
 input, textarea{	
 	margin: auto;
 	margin-top: 20px;
@@ -456,7 +609,31 @@ footer .rights .text-center{
 	margin-top: 2px;
 	margin-bottom: -10px;
 }
-@media (min-width:500px){	
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////////////////// */
+@media (max-width:500px){
+	
+	.logo-nav{
+		margin: auto;
+		padding:2px 3px;
+		margin-left: 30px;
+	}
+	.logo-nav img{
+		content: url('../img/logo-main-h.svg');
+		height: 15px;
+		width: auto;	
+	}
+	#about-us #concept img{
+		content: url('../img/nature-petal-store-xs.jpg');
+	}	
+}
+
+@media (min-width:500px){
+	#about-us #concept img{
+		content: url('../img/nature-petal-store-xs.jpg');
+	}	
 	.account-form>div form #check{
 		margin: 6px 2px 0 30px;
 		height:auto;
@@ -511,9 +688,30 @@ footer .rights .text-center{
 	}
 	.size3 .slide-9 img{
 		content: url('../img/slide-smedium-9.png')
+		
 	}
 }
+
 @media(min-width: 576px){
+
+	.gallery-block.cards-gallery .box-card{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.gallery-block.cards-gallery .container .box-card img{
+			border-radius: 9px;
+			height:250px;
+			width: 250px;
+		  }
+	.gallery-block.cards-gallery .container .box-card > div{
+			flex: 1 0 200px;
+			height: 90px;
+			display: flex;
+			align-items: top;
+			font-size:11px;
+		  }
+
 	.logo-nav{
 		margin: auto;
 		padding: 5px 20px;
@@ -524,7 +722,17 @@ footer .rights .text-center{
 		height: 50px;
 		width: auto;	
 	}
-
+	.gallery-block .transform-on-hover{
+		transition: 0.15s ease-in-out;
+		background-color: white;
+		box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
+		margin-top: 15px;
+		transform:translateZ(0);
+	}
+	.gallery-block .transform-on-hover:hover{ 
+		transform: scale(1.02);
+		box-shadow:0 10px 10px rgba(0,0,0,0.15);
+	}
 	.account-form{
 		background-image: url('../img/leafbg.png');
 		background-repeat: no-repeat;	
@@ -558,7 +766,20 @@ footer .rights .text-center{
 		box-shadow:0 10px 10px rgba(0,0,0,0.15);
 	}
 }
+
 @media (min-width:734px){
+	#about-us #concept img{
+		content: url('../img/nature-petal-store-smedium.png');
+	}
+	.navbar-nav li:last-of-type{
+		margin-left: 40px;
+	}
+
+	.navbar-nav li:last-of-type i{
+		margin: 0px;
+		padding: 0 2px;
+		color: #68e062;
+	}
 	.size1{		
 		height:200px;
 		width: 298px;
@@ -599,7 +820,15 @@ footer .rights .text-center{
 		content: url('../img/slide-sm-9.png')
 	}
 }
+
+@media(max-width: 768px) {
+	body {
+		padding: 0;
+	}
+}
+
 @media (min-width:768px){
+	
 	#intro .head{
 		color: cadetblue;
 	}
@@ -617,7 +846,8 @@ footer .rights .text-center{
 	}
 	.btn:hover,.btn:active,.btn:focus{
 		color: #ffffff;
-		border-color:  #2B605E;
+		opacity: 0.9;
+		border:2px  #2B605E solid;
 		background-color: #2B605E;
 	}
 	.carousel-item{
@@ -675,12 +905,17 @@ footer .rights .text-center{
 	#new-arrivals{
 		margin-top: 100px;
 	}
-	.gallery-block .heading{
+	.gallery-block .heading, #on-sale{
 		padding: 10px;
-		margin: 50px;
+		margin-top: 50px;
+		margin-bottom: 10px;
 	}
 }
+
 @media (min-width:991px){
+	#about-us #concept img{
+		content: url('../img/nature-petal-store-lg.png');
+	}
 	#maincarousel{
 		position: relative;
 		left:50%;
@@ -742,6 +977,7 @@ footer .rights .text-center{
 		content: url('../img/slide-md-9.png')
 	}
 }
+
 @media (min-width:2100px){
 
 	#maincarousel{
