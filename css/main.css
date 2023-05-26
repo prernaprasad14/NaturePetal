@@ -190,10 +190,10 @@ body{
 	position: relative;
  	right:15px;
 }
-.carousel-item{
+#maincarousel .carousel-item{
 	height: auto;
 }
-.carousel-control{
+#maincarousel .carousel-control{
 	font-size: 30px;
 	margin: 0;
 	padding: 2px;
@@ -204,7 +204,7 @@ body{
 	color: cadetblue;
     opacity :0.9;
 }
-.carousel-control a:hover{
+#maincarousel .carousel-control a:hover{
 	color: cadetblue !important;
 }
 
@@ -222,7 +222,7 @@ body{
 	font-weight: 700;
 	/* background-color:#d4dcdd84; */
 }
-.carousel-item{
+#first-half .carousel-item{
 	height: 100vh;
 }
 .size1{
@@ -268,10 +268,43 @@ ul{
 	padding-top: 12px;
 	padding-bottom: 12px;
 }
-.language{
-	background-color: #ffffff;
-	font-size: 16px;
+#on-sale .carousel{
+	left : 15px;
 }
+#on-sale .controls{
+	display : block;
+	height : 55px;
+
+	width : 164px;
+	margin : auto;
+	font-size : 32px;
+	opacity : 0.6;
+	transform-origin : 50%,50% ;
+	transform : translateZ(0) ;
+}
+
+#on-sale .controls a:not(:hover), #on-sale .controls a:not(:active){
+	color : #59e79e !important;
+	opacity : 0.6 !important;
+	transform-origin : center !important ;
+	transform : scale(1) !important;
+	transition : all  0.23s ease-in-out !important;
+}
+.controls a:hover i, .controls a:active i{
+	color : #59e79e;
+	opacity : 0.9;
+	transform : scale(1.3);
+	transition : all  0.23s ease-in-out;
+}
+.controls{
+	position : relative !important;
+	top : 10px !important;
+	margin : 0 auto;
+}
+#on-sale .carousel-control-next{
+	left : 110px;
+}
+
 .btn1{
 	display: block;
 	text-align:center;	
@@ -336,26 +369,28 @@ ul{
 	border:  2px #2d615f solid;
 	background-color: #2d615f;
 }
-#on-sale{
+#new-arrivals{
 	margin-top: 110px;
+}
+#stores{
+	float: clear;
+	margin: 50px 0 ;
 }
 .padding{	
 	padding:10px 10px;
 }
 /*STORES*/
-.gallery-block{
+/* .gallery-block{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 .gallery-block .heading{
-	margin-bottom: 50px;
+	
 	text-align: center;
 
-}
-#new-arrivals{
-	margin-top: 110px;
-}
-.gallery-block .heading h2{
+} */
+
+#stores .heading h2{
 	font-size:1.4rem;
 	font-weight:bold;
 	text-transform:uppercase;
@@ -469,19 +504,39 @@ ul{
 	transition: 0.2s ease-in-out;
 }
 /* about */
+#tool-technology>div{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
 #about-us{
 	width: 1400px;
 	margin: auto;
 }
-#developer-links{
-	width:700px;
-	margin: 20px auto 40px auto;
-	text-align: center;
+#about-dev{
+	width: 650px;
+	display : flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 30px;
 }
-#developer-links>div{
+#about-dev>div{
+	display : flex;
+	width: 500px;
+	flex-direction: column;
+	align-items: center;
+}
+#about-dev div:first-of-type h6{
+	margin-top: 18px;
+}
+#developer-links div{
+	display: flex;
+	flex-wrap: wrap;
 	width:500px;
-	margin: auto;
-	
+	align-items: center;
+	justify-content: center;
+	margin: 0 20px;
 }
 #developer-links a{
 	display: inline-block;
@@ -491,22 +546,31 @@ ul{
 #developer-links a.btn2{
 	padding: 5px;
 }
-/* contact form */
-/* #contact{
-	margin-top: 100px;
-} */
-#contactinfo{
-	margin-bottom: 20px;
-	padding: 5px;
-}
-/* #contactform{
-	margin-top:30px;
+
+#contactform{
+	margin-top:10px;
 	padding: 30px 12px;
-} */
-/* #contactform #msg{
+	background-color: #deeceab7;
+	box-shadow: 1px 1px 3px rgba(148, 231, 211, 0.2);
+	width: 450px;
+	border-radius: 10px;
+}
+#contactform #msg{
 	height: 70px;
 	max-height: 100px;
-} */
+}
+.form-inline{
+	margin:auto;
+}
+.form-inline input{
+	margin: auto;
+	border-radius:5px; 
+	height: 50px;
+	width:160px !important;
+	padding: 12px;
+	border:1px solid #ffffff;
+	
+}
 input, textarea{	
 	margin: auto;
 	margin-top: 20px;
@@ -703,15 +767,18 @@ footer .rights .text-center{
 			border-radius: 9px;
 			height:250px;
 			width: 250px;
-		  }
+	}
 	.gallery-block.cards-gallery .container .box-card > div{
 			flex: 1 0 200px;
 			height: 90px;
 			display: flex;
 			align-items: top;
 			font-size:11px;
-		  }
-
+	}
+	#stores{
+		float: clear;
+		margin: 40px 0 ;
+	}
 	.logo-nav{
 		margin: auto;
 		padding: 5px 20px;
@@ -765,6 +832,7 @@ footer .rights .text-center{
 		transform: scale(1.02);
 		box-shadow:0 10px 10px rgba(0,0,0,0.15);
 	}
+
 }
 
 @media (min-width:734px){
@@ -828,10 +896,53 @@ footer .rights .text-center{
 }
 
 @media (min-width:768px){
-	
 	#intro .head{
 		color: cadetblue;
 	}
+	#stores .heading h2{
+		margin-top: 130px;
+	}
+	/* ///////////////////////////////////////////// */
+	.slider-container{
+		overflow: hidden !important;
+	}
+	#on-sale>div{ 
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content:space-around;
+		height:175px;
+	}
+	#on-sale #sale-slider{ 
+		width: 816px;
+	}
+	#on-sale .carousel-inner {
+		left: 14px;
+	}
+	#on-sale #on-sale-btn{
+		width: 150px;
+		height: 70px;
+		margin: 10px 20px;
+	}
+	#recipeCarousel{
+		margin: 0; 
+		height: 20px;
+		overflow: hidden;
+	}
+	
+	#on-sale .carousel-inner {
+		left: 14px;
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+	}
+	
+	#recipeCarousel{
+		width: 820px !important;
+		height: 180px !important;
+	}
+	/* ///////////////////////////////////////////// */
 	.btn1{
 		text-shadow: none;
 		width: 130px;
@@ -864,7 +975,7 @@ footer .rights .text-center{
 	}
 	.size3{
 	    height:340px;
-		width: 991px;	
+		width: 862px;	
 	}
 	.size1 .slide-1 img{
 		width: 100%;
@@ -891,28 +1002,37 @@ footer .rights .text-center{
 		content: url('../img/slide-md-6.png')
 	}
 	.size3 .slide-7 img{
-		width: 100%;
+		width: 862px;
 		content: url('../img/slide-md-7.png')
 	}
 	.size3 .slide-8 img{
-		width: 100%;
+		width: 862px;
 		content: url('../img/slide-md-8.png')
 	}
 	.size3 .slide-9 img{
-		width: 100%;
+		width: 862px;
 		content: url('../img/slide-md-9.png')
 	}
 	#new-arrivals{
 		margin-top: 100px;
 	}
-	.gallery-block .heading, #on-sale{
-		padding: 10px;
-		margin-top: 50px;
-		margin-bottom: 10px;
-	}
+
 }
 
 @media (min-width:991px){
+	#stores .heading h2{
+		margin-top: 30px;
+	}
+	#about-dev{
+		width: 100%;
+		display: flex;
+		align-content: center;
+
+	}
+	#developer-links div{
+		width: 100%;
+		margin: auto;
+	}
 	#about-us #concept img{
 		content: url('../img/nature-petal-store-lg.png');
 	}
