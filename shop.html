@@ -152,10 +152,15 @@
 
 			var products = document.getElementById('products');
 			
-			var wishlistcount = JSON.parse(localStorage.getItem('wishlist')).length;
+			var wishlistcount =0;
+			if(JSON.parse(localStorage.getItem('wishlist'))!=null){
 
-			var resultCount = `<p>Total ${ productArray.length} results, wishlist = <span id="wishlist-count">${JSON.parse(localStorage.getItem('wishlist')).length}</span></p>`;
-			console.log(JSON.parse(localStorage.getItem('wishlist')).length)
+				wishlistcount = JSON.parse(localStorage.getItem('wishlist')).length;
+			}
+
+			var resultCount = `<p>Total ${ productArray.length} results, wishlist = <span id="wishlist-count">${wishlistcount}</span></p>`;
+			// var resultCount = `<p>Total ${ productArray.length} results, wishlist = <span id="wishlist-count">${JSON.parse(localStorage.getItem('wishlist')).length}</span></p>`;
+
 			$('#result-count').append(resultCount);
 			$('#result-count').css({
 				'margin-bottom':'15px',
@@ -222,7 +227,12 @@
 				'fill':'#e1e1e1',
 			});
 		
-			var wishlistedItem = JSON.parse(localStorage.getItem('wishlist'));
+			var wishlistedItem;
+			if( JSON.parse(localStorage.getItem('wishlist'))!==null){
+				wishlistedItem = JSON.parse(localStorage.getItem('wishlist'))
+			}else{
+				wishlistedItem = [];
+			}
 		
 			$('.wishlist-icon').click(function(){
 				let productId = $(this).data('product-id');
@@ -267,7 +277,7 @@
 		
 			$(document).ready(function() {
 				let wishlistedItem = JSON.parse(localStorage.getItem('wishlist'));
-				if(wishlistedItem.length!=0){
+				if(wishlistedItem!=null){
 
 					for(let i=0; i<wishlistedItem.length; i++){
 						console.log(wishlistedItem[i])

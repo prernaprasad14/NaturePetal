@@ -125,8 +125,11 @@
 
         		var productCard ="";
 				let wishlistedItem = JSON.parse(localStorage.getItem('wishlist'));
-				for(let i=0; i<wishlistedItem.length; ++i){
+				
+				if(wishlistedItem !== null){
+					for(let i=0; i<wishlistedItem.length; ++i){
 				console.log(wishlistedItem.length)
+				
 				let productId = wishlistedItem[i].src.split(".")[0].substr(4);
 				productCard += `
 					<div class="col-sm-6 col-md-4 col-lg-3">
@@ -143,7 +146,7 @@
 							</svg>
 
 						<div class="card-body p-0">`;
-				if(wishlistedItem[i].discount!=='0'){
+				if(wishlistedItem[i].discount !== '0'){
 					let discountedPrice = wishlistedItem[i].price - Math.round(wishlistedItem[i].price* wishlistedItem[i].discount /100) ;
 					productCard += `<p class="price-striked">$${wishlistedItem[i].price}</p>`;
 					productCard += `<p class="discount">$${discountedPrice}</p>`;
@@ -167,6 +170,7 @@
 						</div>				
 						`;
 			}
+			}
 			$('#products').append(productCard);
 			$('.product-card-container .icons').css({
 				'border-radius':"3px",
@@ -177,7 +181,12 @@
 			$('.wishlist-icon').css({
 				'fill':'#d60222',
 			});
-			var wishlistCount =  wishlistedItem.length;
+			var wishlistCount;  
+			if(wishlistedItem !== null){
+				wishlistCount = wishlistedItem.length;
+			}else{
+				wishlistCount = 0;
+			}
 	
 			$('.wishlist-icon').click(function(){
 				
@@ -186,7 +195,7 @@
 				let updatedWishList = wishlistedItem.filter((item)=>{
 					let id = `${item.src.split(".")[0].substr(4)}-${item.id}`;
 					console.log("productId",productId, "   ", "id", id);
-					return id!== productId;
+					return id !== productId;
 				});
 				--wishlistCount;
 				console.log(updatedWishList)
@@ -273,12 +282,16 @@
 			})
 		
 	
-			var resultCount = `<div><p><span id="wishlist-count">Total ${JSON.parse(localStorage.getItem('wishlist')).length} items in wishlist</span></p>`
-			if(wishlistCount ==0 ){
-				resultCount += `<a id="back-to-shop" class ="btn2 " href="shop.html">Browse</a><div>
-`;
-			}
+			
+			var resultCount = ``
+			if(wishlistedItem !== null ){
+				resultCount += `<div><p><span id="wishlist-count">Total ${JSON.parse(localStorage.getItem('wishlist')).length} items in wishlist</span></p>
+					`;
 
+			}else{
+				resultCount += `<div><p><span id="wishlist-count">Total ${wishlistCount} items in wishlist</span></p>
+					<a id="back-to-shop" class ="btn2 " href="shop.html">Browse</a><div><div>`;
+			}
 			$('#result-count').append(resultCount);
 			$('#result-count').css({
 				'margin-bottom':'15px',
