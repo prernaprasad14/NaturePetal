@@ -10,7 +10,8 @@
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	
+	
 
 </head>
 </head>
@@ -54,36 +55,11 @@
 			</div>
 		</nav>
 	</div>
-	<div>
-		<div id="shop-banner" class="carousel slide" data-ride="carousel" data-interval="4500"  data-pause="false">
-			<ul>
-				<li data-target="#shop-banner" data-slide-to="0" class="active"></li>
-				<li data-target="#shop-banner" data-slide-to="1"></li>
-				<li data-target="#shop-banner" data-slide-to="2"></li>
-			</ul>
-			<div class="carousel-inner" role="listbox">
-			<div class="carousel-item active">
-				<img src="img/Artboard 4.png"/>
-			</div>
-			<div class="carousel-item ">
-				<img src="img/Artboard 2.png"/>
-			</div>
-			<div class="carousel-item ">
-				<img src="img/Artboard 5.png"/>
-			</div>
+
+	<section id="wishlist" class="gallery-block cards-gallery">
+		<div class="heading">
+			<h2>Wishlist</h2>
 		</div>
-		<a class="carousel-control-prev" href="#shop-banner" data-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-		  </a>
-		  <a class="carousel-control-next" href="#shop-banner" data-slide="next">
-			<span class="carousel-control-next-icon"></span>
-		  </a>
-	</div>
-</div>
-	<section id="shop" class="gallery-block cards-gallery">
-		<!-- <div class="heading">
-			<h2>Shop</h2>
-		</div> -->
 		<div class="row pl-5 pr-5">
 			<div class="col-xs  col-sm-12  col-lg-2 filter-menu"  style="z-index:100;">
 				<h5>Filters</h5>
@@ -138,47 +114,27 @@
 		</div>		
 	</footer>
 
-	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src="js/data.js"></script>
+
 	
-	<script>
-		$(document).ready(function() {
-			
+    <script>
 
-			var products = document.getElementById('products');
-			
-			var wishlistcount = JSON.parse(localStorage.getItem('wishlist')).length;
-
-			var resultCount = `<p>Total ${ productArray.length} results, wishlist = <span id="wishlist-count">${JSON.parse(localStorage.getItem('wishlist')).length}</span></p>`;
-			console.log(JSON.parse(localStorage.getItem('wishlist')).length)
-			$('#result-count').append(resultCount);
-			$('#result-count').css({
-				'margin-bottom':'15px',
-				'background-color' : '#F8F9F6',
-				'padding':'3px',
-				'font-weight' : '600',
-				'color' : '#676869',
-				'font-size' : '16px',
-				'display' : 'flex',
-				'justify-content' : 'center',
-				'border-radius' : '4px',
-
-			});
-			var productCard ="";
-			for(let i=0; i<productArray.length; ++i){
-				let productId = productArray[i].src.split(".")[0].substr(4);
+        		var productCard ="";
+				let wishlistedItem = JSON.parse(localStorage.getItem('wishlist'));
+				for(let i=0; i<wishlistedItem.length; ++i){
+				console.log(wishlistedItem.length)
+				let productId = wishlistedItem[i].src.split(".")[0].substr(4);
 				productCard += `
 					<div class="col-sm-6 col-md-4 col-lg-3">
 						<div class="product-card-container">
-						<a class="" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
-							<img src="${productArray[i].src}" loading="lazy" alt="${productArray[i].name}" class="card-img-top">
+						<a class="wishlisted" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
+							<img src="${wishlistedItem[i].src}" loading="lazy" alt="${wishlistedItem[i].name}" class="card-img-top">
 							</a>
-							<svg  class="wishlist-icon" data-product-id="${productId}-${productArray[i].id}" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							<svg  class="wishlist-icon" data-product-id="${productId}-${wishlistedItem[i].id}" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 								viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve" >
 							
 							<path d="M38.4,39.6c-3.4,3.8-7.1,6.7-10.7,7.9C26.9,47.8,25,48,25,48s-1.9-0.1-2.7-0.4c-1.2-0.4-2.5-1-3.7-1.8
@@ -187,19 +143,19 @@
 							</svg>
 
 						<div class="card-body p-0">`;
-				if(productArray[i].discount!=='0'){
-					let discountedPrice = productArray[i].price - Math.round(productArray[i].price* productArray[i].discount /100) ;
-					productCard += `<p class="price-striked">$${productArray[i].price}</p>`;
+				if(wishlistedItem[i].discount!=='0'){
+					let discountedPrice = wishlistedItem[i].price - Math.round(wishlistedItem[i].price* wishlistedItem[i].discount /100) ;
+					productCard += `<p class="price-striked">$${wishlistedItem[i].price}</p>`;
 					productCard += `<p class="discount">$${discountedPrice}</p>`;
 				}else{
-					productCard += `<p class="price">$${productArray[i].price}</p>`;
+					productCard += `<p class="price">$${wishlistedItem[i].price}</p>`;
 				}
 				productCard += `
-							<h6 class="ml-1 p-3">${productArray[i].name}</h6>	
+							<h6 class="ml-1 p-3">${wishlistedItem[i].name}</h6>	
 							<div class="icons">
 									<div class="add-to-cart">
-										<input type="checkbox"  name="${productId}-${productArray[i].id}-add" data-product-id="${productId}-${productArray[i].id}-add">
-										<label for="${productId}-${productArray[i].id}-add">
+										<input type="checkbox"  name="${productId}-${wishlistedItem[i].id}-add" data-product-id="${productId}-${wishlistedItem[i].id}-add">
+										<label for="${productId}-${wishlistedItem[i].id}-add">
 											Add&nbsp;to&nbsp;cart
 											<i class="fa-solid fa-cart-shopping" aria-hidden="true" onclick=""></i>
 										</label>
@@ -219,66 +175,35 @@
 			});
 			
 			$('.wishlist-icon').css({
-				'fill':'#e1e1e1',
+				'fill':'#d60222',
 			});
-		
-			var wishlistedItem = JSON.parse(localStorage.getItem('wishlist'));
-		
+			var wishlistCount =  wishlistedItem.length;
+	
 			$('.wishlist-icon').click(function(){
+				
 				let productId = $(this).data('product-id');
 				$(this).toggleClass('wishlisted');
+				let updatedWishList = wishlistedItem.filter((item)=>{
+					let id = `${item.src.split(".")[0].substr(4)}-${item.id}`;
+					console.log("productId",productId, "   ", "id", id);
+					return id!== productId;
+				});
+				--wishlistCount;
+				console.log(updatedWishList)
+				wishlistedItem =[...updatedWishList];
+				$(this).css({
+					'fill':'#ffffff',
+				})
 
-				if($(`.wishlist-icon[data-product-id="${productId}"]`).hasClass('wishlisted')){
-					
-					$('#wishlist-count').text(++wishlistcount);
-					let newItemWishlited = productArray.find(item => {
-						let id = `${item.src.split(".")[0].substr(4)}-${item.id}`;
-						return id === productId}
-					);
-			
-					console.log("1",wishlistedItem)
-					wishlistedItem.push(newItemWishlited);
-					console.log("2",wishlistedItem)
-
-					localStorage.setItem('wishlist', wishlistedItem);
-	
-					$(this).css({
-						'fill':'#d60222',
-					})
-					
-				}else{
-
-					$('#wishlist-count').text(--wishlistcount);
-
-					let updatedWishList = wishlistedItem.filter((item, index)=>{
-						let id = `${item.src.split(".")[0].substr(4)}-${item.id}`;
-						return id!== productId;
-					});
-					wishlistedItem =[...updatedWishList];
-					$(this).css({
-						'fill':'#e1e1e1',
-					})
-				}
 				localStorage.setItem('wishlist', JSON.stringify(wishlistedItem));
-				console.log(wishlistcount)
+				$(`svg[data-product-id="${productId}"]`).closest('div').remove();
+				
 			});
 
+
+			var products = document.getElementById('products');
 			
-		
 			$(document).ready(function() {
-				let wishlistedItem = JSON.parse(localStorage.getItem('wishlist'));
-				if(wishlistedItem.length!=0){
-
-					for(let i=0; i<wishlistedItem.length; i++){
-						console.log(wishlistedItem[i])
-						let productId = `${wishlistedItem[i].src.split(".")[0].substr(4)}-${wishlistedItem[i].id}`; 
-						console.log(productId)
-
-						$(`.wishlist-icon[data-product-id="${productId}"]`).addClass('wishlisted').css({
-							'fill':'#d60222',
-						});
-					}
-				}
 				// Function to check viewport width and apply styles
 				function checkViewportWidth() {
 					var viewportWidth = $(window).width();
@@ -312,7 +237,7 @@
 			var html = '<div><ul>';
 
 			for(var i=0; i<categorgy.length; i++){
-				html+= `<li><input type="checkbox" name="checkbox${productArray[i].id}"/><label for="checkbox${productArray[i].id}">${categorgy[i]}</label></li>`;
+				html+= `<li><input type="checkbox" name="checkbox${categorgy[i]-i}"/><label for="checkbox${categorgy[i]-i}">${categorgy[i]}</label></li>`;
 			}
 
 			html+= '</ul></div>';
@@ -346,9 +271,29 @@
 				'width': '20px',
 				'font-size' : '12px',
 			})
-		}); 
+		
 	
+			var resultCount = `<div><p><span id="wishlist-count">Total ${JSON.parse(localStorage.getItem('wishlist')).length} items in wishlist</span></p>`
+			if(wishlistCount ==0 ){
+				resultCount += `<a id="back-to-shop" class ="btn2 " href="shop.html">Browse</a><div>
+`;
+			}
 
+			$('#result-count').append(resultCount);
+			$('#result-count').css({
+				'margin-bottom':'15px',
+				'background-color' : '#F8F9F6',
+				'padding':'3px',
+				'font-weight' : '600',
+				'color' : '#676869',
+				'font-size' : '16px',
+				'display' : 'flex',
+				'justify-content' : 'center',
+				'border-radius' : '4px',
+
+			});
+	
+		
 	</script>
 </body>
 
