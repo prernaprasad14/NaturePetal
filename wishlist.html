@@ -49,6 +49,9 @@
 						</svg></a>
  					</li>					
 					<li class="nav-item">
+						<a class="nav-link" href="cart.html">Cart</a>
+ 					</li>					
+					<li class="nav-item">
 						<a class="nav-link" href="about.html">About<i class="fa fa-star"></i></a>
  					</li>					
 				</ul>
@@ -124,14 +127,14 @@
     <script>
 
         		var productCard ="";
-				let wishlistedItem = JSON.parse(localStorage.getItem('wishlist'));
+				let wishlistedItem = JSON.parse(localStorage.getItem('wishlist')) || [];
 				
 				if(wishlistedItem !== null){
 					for(let i=0; i<wishlistedItem.length; ++i){
-				console.log(wishlistedItem.length)
+					console.log(wishlistedItem.length)
 				
-				let productId = wishlistedItem[i].src.split(".")[0].substr(4);
-				productCard += `
+					let productId = wishlistedItem[i].src.split(".")[0].substr(4);
+					productCard += `
 					<div class="col-sm-6 col-md-4 col-lg-3">
 						<div class="product-card-container">
 						<a class="wishlisted" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
@@ -156,7 +159,7 @@
 				productCard += `
 							<h6 class="ml-1 p-3">${wishlistedItem[i].name}</h6>	
 							<div class="icons">
-									<div class="add-to-cart">
+									<div class="add-to-cart" data-product-id="${productId}-${wishlistedItem[i].id}-add">
 										<input type="checkbox"  name="${productId}-${wishlistedItem[i].id}-add" data-product-id="${productId}-${wishlistedItem[i].id}-add">
 										<label for="${productId}-${wishlistedItem[i].id}-add">
 											Add&nbsp;to&nbsp;cart
@@ -181,13 +184,10 @@
 			$('.wishlist-icon').css({
 				'fill':'#d60222',
 			});
-			var wishlistCount;  
-			if(wishlistedItem !== null){
-				wishlistCount = wishlistedItem.length;
-			}else{
-				wishlistCount = 0;
-			}
-	
+			var wishlistCount = wishlistedItem.length || 0; 
+			var cartItem =  JSON.parse(localStorage.getItem('cart')) || [];
+			var cartCount = cartItem.length || 0;
+			
 			$('.wishlist-icon').click(function(){
 				
 				let productId = $(this).data('product-id');
@@ -209,6 +209,45 @@
 				
 			});
 
+			$('.add-to-cart').click(function(){
+				let productId = $(this).data('product-id');
+				
+					$('#cart-count').text(++cartCount);
+					let newItem = wishlistedItem.find(item => {
+						let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}-add`;
+						console.log("id ", id)
+						console.log("productId ", productId)
+						if(id === productId && (item.qty == undefined || item.qty == null)){
+								item.qty = 1;
+								console.log("11",	item.qty );
+								
+							}else{
+								
+								item.qty += 1;
+							}
+							return id === productId;
+						}
+					);
+					console.log("newItem", newItem)
+					var existingItem = cartItem.find(item => item.id === newItem.id)
+					if(!existingItem ){
+						cartItem.push(newItem);
+					}
+					console.log("1",newItem)
+					console.log("2",cartItem)
+					localStorage.setItem('cart', JSON.stringify(cartItem));
+	
+					$(this).css({
+						'fill':'#d60222',
+					})
+					
+				// }
+
+				console.log(cartCount)
+			});
+
+			
+			
 
 			var products = document.getElementById('products');
 			
@@ -284,14 +323,15 @@
 	
 			
 			var resultCount = ``
-			if(wishlistedItem !== null ){
+			if(wishlistedItem.length > 0){
 				resultCount += `<div><p><span id="wishlist-count">Total ${JSON.parse(localStorage.getItem('wishlist')).length} items in wishlist</span></p>
 					`;
 
 			}else{
-				resultCount += `<div><p><span id="wishlist-count">Total ${wishlistCount} items in wishlist</span></p>
-					<a id="back-to-shop" class ="btn2 " href="shop.html">Browse</a><div><div>`;
+				resultCount += `<div><p><span id="wishlist-count">Total 0 items in wishlist</span></p>
+					<a id="back-to-shop" class ="btn3 " href="shop.html">Browse</a><div><div>`;
 			}
+
 			$('#result-count').append(resultCount);
 			$('#result-count').css({
 				'margin-bottom':'15px',

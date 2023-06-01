@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<head>
+    <title>
+		Shop at Nature Petal | Nature Petal
+	</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/favicon.png">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script src="js/data.js"></script>
+</head>
+</head>
+<body data-spy="scroll" data-target="#navbarResponsive">
+    <div id="home">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark" >
+			<a href="index.html" class="logo-nav">
+				<img src="img/logo-main-h.svg" alt="nature-petal-logo">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"	data-target="#navbarResponsive">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item ">
+						<a class="nav-link" href="shop.html">Shop</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.html#onsale">Events</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.html#stores">Stores</a>
+					</li>	
+					<li class="nav-item">
+						<a class="nav-link" href="signin.html">Sign in</a>
+					</li>
+					<li class="nav-item" >
+						<a class="nav-link" href="wishlist.html">
+							<svg fill="#e9ebcf" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve" >
+						
+						<path d="M38.4,39.6c-3.4,3.8-7.1,6.7-10.7,7.9C26.9,47.8,25,48,25,48s-1.9-0.1-2.7-0.4c-1.2-0.4-2.5-1-3.7-1.8
+							c-13-8.1-25.8-35-13-42.1c4.3-2.4,9.2-1.7,13-0.5c3.8,1.2,7.1,6.9,7.1,6.9s5.7-8.2,12.7-8c2,0.1,4.1,0.5,6.1,1.6
+							C54.9,9.4,48.2,28.4,38.4,39.6z"/>
+						</svg></a>
+ 					</li>					
+					<li class="nav-item">
+						<a class="nav-link" href="cart.html">Cart</a>
+ 					</li>					
+					<li class="nav-item">
+						<a class="nav-link" href="about.html">About<i class="fa fa-star"></i></a>
+ 					</li>					
+				</ul>
+			</div>
+		</nav>
+	</div>
+	
+	<section id="cart" class="gallery-block cards-gallery">
+
+   
+		<div class="row pl-5 pr-5">
+
+			
+			<div class="col-xs col-sm-12 col-lg-10">
+				<div class="container-fluid">
+					<div id="result-count"></div>
+					<div class="row" id="cart-products"></div>
+				</div>
+			</div>			
+		</div>
+	
+	</section>
+
+	<footer>
+		<div class="row padding">
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
+				<div class="logo">
+					<a href="#home">
+						<img src="img/logo-main-v.svg" alt="nature-petal-logo"> 
+					</a>
+				</div>					
+				<div class="social-media">	
+					<a href="#"><i class="fa fa-facebook-square"></i></a>
+					<a href="#"><i class="fab fa-youtube"></i></a>
+					<a href="#"><i class="fa fa-instagram"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+				</div>		
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center  footer-content">
+				<a href="#">OFFERS & EVENT</a>
+				<a href="#">CUSTOMER SERVICE</a>
+				<a href="about.html">BRAND STORY</a>
+				<a href="#">CAREER</a>					
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3  text-center  footer-content">
+				<a href="#">PRIVACY POLICY</a>
+				<a href="about.html#contact">CONTACT US</a>
+				<a href="#">CAMPAIGN</a>				
+				<a href="#">TERMS & CONDITIONS</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center  footer-content">
+				<a href="#">STORES</a>
+				<a href="#">STORE NOTICE</a>
+				<a href="#">REVIEW</a>
+				<a href="#">FAQS</a>
+			</div>	
+			<div class="row rights">
+					<p>All Rights Reserved. Copyright NaturePetal©<span id="curryear">2023</span></p>
+			</div>
+		</div>		
+	</footer>
+
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	
+	<script>
+
+		$(document).on('click', '.remove-from-cart', function() {
+            
+            console.log("remove-from-cart called", this)
+			var cartItem =  JSON.parse(localStorage.getItem('cart')) || [];
+			let productId = $(".remove-from-cart").data("product-id");
+			var updatedCart = cartItem.filter((item)=>{
+				let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}`;
+				console.log(id=== productId)
+				return id !== productId;
+			});
+			$(this).closest('div').remove();
+			console.log(updatedCart);
+			console.log(cartItem);
+
+			localStorage.setItem('cart', JSON.stringify(updatedCart));
+        });
+
+		
+		$(document).ready(function() {
+			
+			var cartProducts = document.getElementById('cart-products');
+			
+			var cartCount = JSON.parse(localStorage.getItem('cart')).length || 0;
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            var productCard ="";
+            var resultCount = ``
+	
+			resultCount += `<div class><p><span id="cart-count">Total ${cartCount} items in cart</span></p>
+			<a href="wishlist.html" class ="btn2">Add from wishlist</a></div> <div><a href="shop.html" class ="btn3" id="back-to-shop" >Browse</a></div>`;
+
+			
+
+			if(cartCount>0){
+			    for(let i=0; i<cart.length; ++i){
+                    let productId = cart[i]?.src.split(".")[0].substr(4);
+                    productCard += `
+                        <div class="col-sm-6 col-md-4 col-lg-3"  data-product-id="${productId}-${cart[i]?.id}">
+                            <div class="product-card-container " style="margin-bottom :200px;">
+                                <a class="" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
+                                    <img src="${cart[i]?.src}" loading="lazy" alt="${cart[i]?.name}" class="card-img-top">
+                                </a>
+								<p><button>-</button> ${cart[i].qty} <button>+</button><p>
+								<button type="submit" style="display:inline-block; font-size:12px; font-weight:700;" class="btn1">move to wishlist</button>
+
+                                <button type="submit" class="remove-from-cart"  data-product-id="${productId}-${cart[i]?.id}" >Remove</button>
+
+						<div class="card-body p-0">`;
+				if(cart[i]?.discount!=='0'){
+					let discountedPrice = cart[i]?.price - Math.round(cart[i]?.price* cart[i]?.discount /100) ;
+					productCard += `<p class="price-striked">$${cart[i]?.price}</p>`;
+					productCard += `<p class="discount">$${discountedPrice}</p>`;
+				}else{
+					productCard += `<p class="price">$${cart[i]?.price}</p>`;
+				}
+				productCard += `
+							<h6 class="ml-1 p-3">${cart[i]?.name}</h6>	
+						</div>
+						</div>
+						</div>				
+						`;
+			    }
+            }else{
+                resultCount = `<div class><p><span id="cart-count">Total ${cartCount} items in cart</span></p>
+                <a href="wishlist.html" class ="btn2">Add from wishlist</a></div> <div><a href="shop.html" class ="btn2">Browse</a></div>`;
+                
+            }
+            $('#cart').append(resultCount);
+            $('#cart').append(productCard);
+			$('#cart-count').css({
+				'margin-bottom':'15px',
+				'background-color' : '#F8F9F6',
+				'padding':'3px',
+				'font-weight' : '600',
+				'color' : '#676869',
+				'font-size' : '16px',
+				'display' : 'flex',
+				'justify-content' : 'center',
+				'border-radius' : '4px',
+
+			});
+			
+			$('#products').append(productCard);
+			
+				let cartItems = JSON.parse(localStorage.getItem('cart'));
+				if(cartItems!=null){
+
+					for(let i=0; i<cartItems.length; i++){
+						console.log(cartItems[i])
+						let productId = `${cartItems[i]?.src.split(".")[0].substr(4)}-${cartItems[i]?.id}`; 
+						console.log(productId)
+
+						$(`.add-to-cart[data-product-id="${productId}"]`).addClass('added-to-cart').css({
+							'fill':'#d60222',
+						});
+					}
+				}
+				// Function to check viewport width and apply styles
+				function checkViewportWidth() {
+					var viewportWidth = $(window).width();
+
+					// Check if viewport width is less than 600px
+					if (viewportWidth <= 500) {
+						// Apply styles for small screens
+						$('#products>div').css({'margin':'12px '});
+						$('#products>div').css({
+						'border' : '2px solid #f1f2ff',
+						'border-radius' : '4px',
+						'padding': '12px',	
+						})
+					} 
+				}
+
+				// Call the function on page load
+				checkViewportWidth();
+
+				// Call the function whenever the window is resized
+				$(window).resize(function() {
+					checkViewportWidth();
+				});
+
+
+			var container = document.createElement('div');
+			container.id = "wrapper";
+
+			$('body').append(container);
+			
+			$('.product-card-container').css({
+				'display' :'flex',
+				'height' :'200px',
+				'width':'90%',
+				'background-color': 'rebeccapurple',
+				'margin-bottom' : '20px',
+			})
+			$('.product-card-container img').css({
+				'height' :'40px',
+				'width' :'40px',
+				'background-color': 'rebeccapurple',
+			})
+			
+		
+		}); 
+      
+	
+
+	</script>
+</body>
+
+</html>
