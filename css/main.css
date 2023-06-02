@@ -177,7 +177,31 @@ body{
 .tz-gallery .lightbox:hover:before {
     opacity: 1;
 }
-.product-card-container{
+#cart{
+	background-color: #f1f1f1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px;
+}
+#cart-products{
+	display: flex;
+	flex-direction: column;
+}
+
+#cart-products .product-card-container{
+	display: flex;
+	flex-direction: row;
+	background-color: #fefefe;
+	margin: 5px 5px;
+	border-radius: 2px;
+	padding: 10px 10px;
+}
+#cart-products .product-card-container img{
+	height :140px;
+	width :140px;
+}
+#shop .product-card-container, #wishlist .product-card-container{
 	margin-bottom : 90px;
 	height : 355px;
 	background-color : #FCFCFC;
