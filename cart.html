@@ -58,23 +58,13 @@
 		</nav>
 	</div>
 	
-	<section id="cart" class="gallery-block cards-gallery">
-
-   
-		<div class="row pl-5 pr-5">
-
-			
-			<div class="col-xs col-sm-12 col-lg-10">
-				<div class="container-fluid">
-					<div id="result-count"></div>
-					<div class="row" id="cart-products"></div>
-				</div>
-			</div>			
+	<section id="cart">
+		<div id="result-count"></div>
+		<div id="cart-products"></div>		
 		</div>
-	
 	</section>
 
-	<footer>
+	<footer style="margin-top: 0;">
 		<div class="row padding">
 			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
 				<div class="logo">
@@ -150,22 +140,29 @@
             var productCard ="";
             var resultCount = ``
 	
-			resultCount += `<div class><p><span id="cart-count">Total ${cartCount} items in cart</span></p>
-			<a href="wishlist.html" class ="btn2">Add from wishlist</a></div> <div><a href="shop.html" class ="btn3" id="back-to-shop" >Browse</a></div>`;
+			resultCount += `<p><span id="cart-count">Total ${cartCount} items in cart</span></p>
+				<div class="buttons"><a href="wishlist.html" class ="btn2">Add from wishlist</a><a href="shop.html" class ="btn2" id="back-to-shop" >Browse</a></div>`;
 
-			
+			$('#result-count').append(resultCount);
+			$('#result-count .buttons').css({
+				'display' :'flex',
+				'margin': '13px',
+			});
+			$('#result-count .buttons a').css({
+				'margin': '13px',
+			});
 
 			if(cartCount>0){
 			    for(let i=0; i<cart.length; ++i){
                     let productId = cart[i]?.src.split(".")[0].substr(4);
                     productCard += `
-                        <div class="col-sm-6 col-md-4 col-lg-3"  data-product-id="${productId}-${cart[i]?.id}">
-                            <div class="product-card-container " style="margin-bottom :200px;">
+                        <div data-product-id="${productId}-${cart[i]?.id}">
+                            <div class="product-card-container ">
                                 <a class="" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
                                     <img src="${cart[i]?.src}" loading="lazy" alt="${cart[i]?.name}" class="card-img-top">
                                 </a>
 								<p><button>-</button> ${cart[i].qty} <button>+</button><p>
-								<button type="submit" style="display:inline-block; font-size:12px; font-weight:700;" class="btn1">move to wishlist</button>
+								<button type="submit" style="display:inline-block; font-size:12px; font-weight:700;" class="btn2">move to wishlist</button>
 
                                 <button type="submit" class="remove-from-cart"  data-product-id="${productId}-${cart[i]?.id}" >Remove</button>
 
@@ -189,8 +186,7 @@
                 <a href="wishlist.html" class ="btn2">Add from wishlist</a></div> <div><a href="shop.html" class ="btn2">Browse</a></div>`;
                 
             }
-            $('#cart').append(resultCount);
-            $('#cart').append(productCard);
+            $('#cart-products').append(productCard);
 			$('#cart-count').css({
 				'margin-bottom':'15px',
 				'background-color' : '#F8F9F6',
@@ -204,65 +200,21 @@
 
 			});
 			
-			$('#products').append(productCard);
 			
-				let cartItems = JSON.parse(localStorage.getItem('cart'));
-				if(cartItems!=null){
+			let cartItems = JSON.parse(localStorage.getItem('cart'));
+			if(cartItems!=null){
 
-					for(let i=0; i<cartItems.length; i++){
-						console.log(cartItems[i])
-						let productId = `${cartItems[i]?.src.split(".")[0].substr(4)}-${cartItems[i]?.id}`; 
-						console.log(productId)
+				for(let i=0; i<cartItems.length; i++){
+					console.log(cartItems[i])
+					let productId = `${cartItems[i]?.src.split(".")[0].substr(4)}-${cartItems[i]?.id}`; 
+					console.log(productId)
 
-						$(`.add-to-cart[data-product-id="${productId}"]`).addClass('added-to-cart').css({
-							'fill':'#d60222',
-						});
-					}
+					$(`.add-to-cart[data-product-id="${productId}"]`).addClass('added-to-cart').css({
+						'fill':'#d60222',
+					});
 				}
-				// Function to check viewport width and apply styles
-				function checkViewportWidth() {
-					var viewportWidth = $(window).width();
+			}
 
-					// Check if viewport width is less than 600px
-					if (viewportWidth <= 500) {
-						// Apply styles for small screens
-						$('#products>div').css({'margin':'12px '});
-						$('#products>div').css({
-						'border' : '2px solid #f1f2ff',
-						'border-radius' : '4px',
-						'padding': '12px',	
-						})
-					} 
-				}
-
-				// Call the function on page load
-				checkViewportWidth();
-
-				// Call the function whenever the window is resized
-				$(window).resize(function() {
-					checkViewportWidth();
-				});
-
-
-			var container = document.createElement('div');
-			container.id = "wrapper";
-
-			$('body').append(container);
-			
-			$('.product-card-container').css({
-				'display' :'flex',
-				'height' :'200px',
-				'width':'90%',
-				'background-color': 'rebeccapurple',
-				'margin-bottom' : '20px',
-			})
-			$('.product-card-container img').css({
-				'height' :'40px',
-				'width' :'40px',
-				'background-color': 'rebeccapurple',
-			})
-			
-		
 		}); 
       
 	
