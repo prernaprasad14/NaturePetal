@@ -154,7 +154,7 @@
 		$(document).ready(function() {
 			
 			var wishlistedItem = JSON.parse(localStorage.getItem('wishlist')) || [];
-			var wishlistcount = wishlistcount = JSON.parse(localStorage.getItem('wishlist')).length || 0;
+			var wishlistcount  = wishlistedItem.length || 0;
 			var cartItem = cartItem = JSON.parse(localStorage.getItem('cart')) || [];
 			var cartCount =  cartItem.length || 0;
 
@@ -308,7 +308,7 @@
 			
 		
 			$(document).ready(function() {
-				let wishlistedItem = JSON.parse(localStorage.getItem('wishlist'));
+				let wishlistedItem = JSON.parse(localStorage.getItem('wishlist')) || [];
 				if(wishlistedItem!=null){
 
 					for(let i=0; i<wishlistedItem.length; i++){
