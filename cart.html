@@ -61,6 +61,7 @@
 	<section id="cart">
 		<div id="result-count"></div>
 		<div id="cart-products"></div>		
+		<div id="amount-summary"></div>		
 		</div>
 	</section>
 
@@ -121,8 +122,8 @@
             var productCard ="";
             var resultCount = ``
 	
-			resultCount += `<p>Total <span id="cart-count">&nbsp;${cartCount}&nbsp;</span> items in cart</p>
-				<div class="buttons"><a href="wishlist.html" class ="btn2">Add from wishlist</a><a href="shop.html" class ="btn2" id="back-to-shop" >Browse</a></div>`;
+			resultCount += `<p>Total <span id="cart-count">&nbsp;${cartCount}&nbsp;</span> ${cartCount >1 ? "items" : "item" }  in cart</p>
+				<div class="buttons"><a href="wishlist.html" class ="btn3">Add from wishlist</a><a href="shop.html" class ="btn3" id="back-to-shop" >Browse</a></div>`;
 
 			$('#result-count').append(resultCount);
 			$('#result-count .buttons').css({
@@ -132,43 +133,64 @@
 			$('#result-count .buttons a').css({
 				'margin': '13px',
 			});
-
+			function calculateTotalAmount(){
+				let cartItems = JSON.parse(localStorage.getItem('cart'));
+				let totalPrice = 0;
+				for(let i=0; i<cartItems.length; i++){
+					totalPrice += (cartItems[i].price - (cartItems[i].price * cartItems[i].discount / 100)) * cartItems[i].qty;
+					
+				}
+				console.log(totalPrice)
+				return totalPrice;
+			}
+			var totalPrice=0;
 			if(cartCount>0){
+				productCard += `<div id="cart-header"><ul>
+					<li>Product</li>
+					<li>Qty</li>
+					<li>Discount</li>
+					<li>Price</li></div>`
 			    for(let i=0; i<cart.length; ++i){
                     let productId = cart[i]?.src.split(".")[0].substr(4);
                     productCard += `
 
                             <div class="product-card-container " data-product-id="${productId}-${cart[i]?.id}" >
-                                <a class="" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
+								<a class="" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
                                     <img src="${cart[i]?.src}" loading="lazy" alt="${cart[i]?.name}" class="card-img-top">
                                 </a>
-								<div>
-									<button  class="decrement">-</button>
-									<p class="item-qty"> ${cart[i].qty}</p> 
-									<button class="increment">+</button>
-								</div>
-								<div>
-									<button type="submit" class="move-to-wishlist btn2"  data-product-id="${productId}-${cart[i]?.id}"  style="display:inline-block; font-size:12px; font-weight:700;">move to wishlist</button>
-									<button type="submit" class="remove-from-cart btn2"  data-product-id="${productId}-${cart[i]?.id}" >Remove</button>
-								</div>
-								<div class="card-body p-0">`;
-									if(cart[i]?.discount!=='0'){
-										let discountedPrice = cart[i]?.price - Math.round(cart[i]?.price* cart[i]?.discount /100) ;
-										productCard += `<p class="price-striked">$${cart[i]?.price}</p>`;
-										productCard += `<p class="discount">$${discountedPrice}</p>`;
-									}else{
-										productCard += `<p class="price">$${cart[i]?.price}</p>`;
+								<div><h6 class="p-2" style="width:140px; font-size:16px; font-weight:400;">${cart[i]?.name}</h6></div>
+								<div class="quantity">
+							
+										<button class="decrement">-</button>
+										<p class="item-qty"> ${cart[i].qty}</p> 
+										<button class="increment">+</button></div>
+									`
+									if(cart[i].qty >= 5){
+										productCard += `<div><p class="message">Max limit reached!</p></div>`;
 									}
-									productCard += `<h6 class="ml-1 p-3">${cart[i]?.name}</h6>	
+
+						
+									let discountedPrice = (cart[i]?.price - Math.round(cart[i]?.price * cart[i]?.discount /100))  * cart[i].qty ;
+
+										productCard += `<div style="display:flex; flex-direction:row;">
+											<p ><span class="discount">${cart[i]?.discount}%</span></p>`;
+										productCard += `<p class="price"><span class="price-striked">₹${cart[i]?.price * cart[i].qty}</span>
+											<span class="price-calulated">₹${discountedPrice}</span></p>
+								</div>
 								</div>				
-							</div>		
-						`;
-			    }
-            }else{
-                resultCount = `<div class><p><span id="cart-count">Total ${cartCount} items in cart</span></p>
-                <a href="wishlist.html" class ="btn2">Add from wishlist</a></div> <div><a href="shop.html" class ="btn2">Browse</a></div>`;
-                
-            }
+							</div>`
+							totalPrice += discountedPrice;
+						}
+					}else{
+						resultCount = `<div><p><span id="cart-count">Total ${cartCount} items in cart</span></p>
+							<a href="wishlist.html" class ="btn3">Add from wishlist</a></div> <div><a href="shop.html" class ="btn3">Browse</a></div>`;
+							
+						}
+						if(cartCount>0){
+
+							$(`#amount-summary`).append(`<p id="cart-total">Total ₹${totalPrice}</p>`);
+						}
+			
             $('#cart-products').append(productCard);
 			$('#cart-count').parent().css({
 				'margin-bottom':'15px',
@@ -180,9 +202,13 @@
 				'display' : 'flex',
 				'justify-content' : 'center',
 				'border-radius' : '4px',
-
 			});
-			
+			$(`.product-card-container .message`).css({
+							'visibility': 'hidden',
+							'font-size' : '10px',
+							'color' : '#E24B3C', 
+							'font-style': 'italic'
+			})
 			
 			let cartItems = JSON.parse(localStorage.getItem('cart'));
 			if(cartItems!=null){
@@ -204,7 +230,7 @@
 				--cartCount;
 				$(`#cart-count`).text(cartCount);
 				let movedItem;
-				var updatedCart = cartItems.filter((item)=>{
+				var updatedCart = cart.filter((item)=>{
 					let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}`;
 					console.log(id=== productId)
 					if(id===productId){
@@ -231,7 +257,7 @@
 		$('.remove-from-cart').click(function() {
             console.log("remove-from-cart called", this)
 			let productId = $(".remove-from-cart").data("product-id");
-			var updatedCart = cartItems.filter((item)=>{
+			var updatedCart = cart.filter((item)=>{
 				let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}`;
 				console.log(id=== productId)
 				return id !== productId;
@@ -254,57 +280,64 @@
 
 		$('.increment').click(function(){
 			let productId= $(this).parent().parent().closest('div').data('product-id');
-			console.log(this, productId)
 			let updatedItemQty = JSON.parse(localStorage.getItem('cart')).map(item => {
 				let id = `${item.src.split(".")[0].substr(4)}-${item.id}`;
 				if(id === productId){
+					let btn = $(this).closest(`.product-card-container`).data('product-id');
 					if(item.qty<5){
 						++item.qty;
-						let btn = $(this).closest(`.product-card-container`).data('product-id');
 						 $(`.product-card-container[data-product-id=${btn}] .item-qty`).text(item.qty);
-						console.log(item, item.qty, btn);
+						 let discountedPrice = (item.price - (item.price * item.discount / 100));
+						 $(`.product-card-container[data-product-id=${btn}] .price-striked`).text(`$${item.price * item.qty}`);
+						 $(`.product-card-container[data-product-id=${btn}] .price-calulated`).text(`$${ discountedPrice  * item.qty}`);
+					}if(item.qty == 5){
+						$(`.product-card-container[data-product-id=${btn}] .message`).css({
+							'visibility': 'visible',
+							'font-size' : '10px',
+							'color' : '#E24B3C', 
+							'font-style': 'italic'
+						})
 					}else{
 						$(`.product-card-container[data-product-id=${btn}] .message`).text("Maximum limit reached")
-						$(`.product-card-container[data-product-id=${btn}] .message`).css({
-							'display': 'inline-block',
-							'font-size' : '10px',
-							'color' : 'grey',
-						})
 					}
 
 				}
 				return item;	
 			}
 			);
-			console.log(updatedItemQty);
 			localStorage.setItem('cart', JSON.stringify(updatedItemQty));
+			$(`#cart-total`).text(`Total ₹${calculateTotalAmount()}`);
 		});
 
 		$('.decrement').click(function(){
 			let productId= $(this).parent().parent().closest('div').data('product-id');
-			console.log(this, productId)
 			let qtyZero=false;
 			let updatedItemQty = JSON.parse(localStorage.getItem('cart')).filter(item => {
-				console.log(item);
 				let id = `${item.src.split(".")[0].substr(4)}-${item.id}`;
+				let btn = $(this).closest(`.product-card-container`).data('product-id');
 				if(id === productId){
 					if(item.qty>0){
 						--item.qty;
-						let btn = $(this).closest(`.product-card-container`).data('product-id');
 						 $(`.product-card-container[data-product-id=${btn}] .item-qty`).text(item.qty);
-						console.log(item, item.qty, btn);
-						console.log("item"+item, "id"+id , "item.qty="+item.qty, "btn: ",btn);
+						 let discountedPrice = (item.price - (item.price * item.discount / 100));
+						 $(`.product-card-container[data-product-id=${btn}] .price-striked`).text(`$${item.price * item.qty}`);
+						 $(`.product-card-container[data-product-id=${btn}] .price-calulated`).text(`$${ discountedPrice  * item.qty}`);
 					}
 				}
-				if(item.qty>0){
+				if(item.qty>0 ){
+					$(`.product-card-container[data-product-id=${btn}] .message`).css({
+							'visibility': 'hidden',
+							'font-size' : '10px',
+							'color' : '#E24B3C', 
+							'font-style': 'italic'
+					})
 					return item;
 				}else{
 					qtyZero = true;
 				}
-				
-					
-			}
-			);
+			});
+			
+
 			if(qtyZero){
 				--cartCount;
 				$(`#cart-count`).text(cartCount);
@@ -317,8 +350,9 @@
 					card.remove();
 				});
 			}
-			console.log(updatedItemQty);
+
 			localStorage.setItem('cart', JSON.stringify(updatedItemQty));
+			$(`#cart-total`).text(`Total ₹${calculateTotalAmount()}`);
 		});
 
 		});
