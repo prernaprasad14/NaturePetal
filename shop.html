@@ -160,7 +160,7 @@
 
 			var products = document.getElementById('products');
 
-			var resultCount = `<p>Total ${ productArray.length} results, wishlist = <span id="wishlist-count">${wishlistcount}, </span></p>
+			var resultCount = `<p>Total ${ productArray.length} results, Total <span id="wishlist-count">${wishlistcount} items in wishlist, </span></p>
 			<p><span id= "cart-count"> Total ${cartCount} items in cart. </span></p>`;
 
 			$('#result-count').append(resultCount);
@@ -182,8 +182,8 @@
 				productCard += `
 					<div class="col-sm-6 col-md-4 col-lg-3">
 						<div class="product-card-container">
-						<a class="" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
-							<img src="${productArray[i].src}" loading="lazy" alt="${productArray[i].name}" class="card-img-top">
+							<a class="" href="https://dribbble.com/shots/21512983-Brand-Identity-and-Packaging-Nature-Petal" target="_blank">
+								<img src="${productArray[i].src}" loading="lazy" alt="${productArray[i].name}" class="card-img-top">
 							</a>
 							<svg  class="wishlist-icon" data-product-id="${productId}-${productArray[i].id}" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 								viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve" >
@@ -196,18 +196,15 @@
 						<div class="card-body p-0">`;
 				if(productArray[i].discount!=='0'){
 					let discountedPrice = productArray[i].price - Math.round(productArray[i].price* productArray[i].discount /100) ;
-					productCard += `<p class="price-striked">$${productArray[i].price}</p>`;
-					productCard += `<p class="discount">$${discountedPrice}</p>`;
+					productCard += `<p class="price"><span class="price-striked">$${productArray[i].price}</span>`;
+					productCard += `<span class="discount"> ₹${discountedPrice}</span></p>`;
 				}else{
-					productCard += `<p class="price">$${productArray[i].price}</p>`;
+					productCard += `<p class="price"><span class="price-calculated"> ₹${productArray[i].price}</span></p>`;
 				}
 				productCard += `
-							<h6 class="ml-1 p-3">${productArray[i].name}</h6>	
-							<div class="icons">
-									<div class="add-to-cart" data-product-id="${productId}-${productArray[i].id}-add">
-										<button class="btn3" name="${productId}-${productArray[i].id}-add" >Add&nbsp;to&nbsp;cart</button>
-									</div>
-								</div>
+							<h6 class="p-0">${productArray[i].name}</h6>	
+							<div class="add-to-cart" data-product-id="${productId}-${productArray[i].id}-add">
+								<button class="btn3" name="${productId}-${productArray[i].id}-add" >Add&nbsp;to&nbsp;cart</button>
 							</div>
 						</div>
 						</div>
@@ -215,11 +212,6 @@
 						`;
 			}
 			$('#products').append(productCard);
-			$('.product-card-container .icons').css({
-				'border-radius':"3px",
-				'width': '100%',
-				'height' :'40px',
-			});
 			
 			$('.wishlist-icon').css({
 				'fill':'#e1e1e1',
@@ -228,7 +220,7 @@
 			$('.add-to-cart').click(function(){
 				let productId = $(this).data('product-id');
 
-					$('#cart-count').text(++cartCount);
+					$('#cart-count').text(`Total ${++cartCount} items in cart`);
 					
 					let newItem = productArray.find(item => {
 						let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}-add`;
@@ -272,7 +264,7 @@
 
 				if($(`.wishlist-icon[data-product-id="${productId}"]`).hasClass('wishlisted')){
 					
-					$('#wishlist-count').text(++wishlistcount);
+					$('#wishlist-count').text(`${++wishlistcount} items in wishlist, `);
 					let newItemWishlited = productArray.find(item => {
 						let id = `${item.src.split(".")[0].substr(4)}-${item.id}`;
 						return id === productId}
@@ -290,7 +282,7 @@
 					
 				}else{
 
-					$('#wishlist-count').text(--wishlistcount);
+					$('#wishlist-count').text(`${--wishlistcount} items in wishlist, `);
 
 					let updatedWishList = wishlistedItem.filter((item, index)=>{
 						let id = `${item.src.split(".")[0].substr(4)}-${item.id}`;
@@ -382,7 +374,7 @@
 				// 'padding' : '10px 3px ',
 				'margin' : '2px',
 				'background - color':'#cecece',
-				'height' : '300px',
+				'height' : '85px',
 			})
 
 			$('.filter-menu div ul').css({
