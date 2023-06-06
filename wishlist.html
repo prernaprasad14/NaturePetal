@@ -211,33 +211,42 @@
 				
 				$('#cart-count').text(++cartCount);
 
-				let newItem = cartItem.find(item => {
+				//extract the newItem from wishlist which is being added to the cart
+				let newItem = wishlistedItem.find(item => {
+					let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}-add`;
+					if( productId === id){
+						return item;
+					}
+				});
+				
+				//check the new item being added from wishlist, is it in the cart??
+					let existingItem = cartItem.find(item => {
 
 					let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}-add`;
-					console.log("id ", id,"     ","productId ", productId)
 						if(id === productId){
-							if(item.qty == undefined || item.qty == null){
-								item.qty = 1;
-								console.log("11",	item.qty );
-							}else{
-								item.qty += 1;
-							}
+							//if item is in the cart, update qty count
+							item.qty += 1; 
 							return item;
-						}
+						}	
 					});
-					console.log("newItem", newItem)
-					var existingItem = cartItem.find(item => item.id === newItem.id)
+
+					console.log("existingItem", existingItem)
+
 					if(!existingItem ){
+						// if item not in cart, assign qty : 1;
+						newItem.qty = 1;
 						cartItem.push(newItem);
 					}
-					console.log("1",newItem)
+					console.log("1",existingItem)
 					console.log("2",cartItem)
+					console.log("3",newItem)
 					localStorage.setItem('cart', JSON.stringify(cartItem));
-	
-					$(this).css({
-						'fill':'#d60222',
-					})
-					
+				
+
+				$(this).css({
+					'fill':'#d60222',
+				})
+				
 				console.log(cartCount)
 			});
 			var products = document.getElementById('products');
