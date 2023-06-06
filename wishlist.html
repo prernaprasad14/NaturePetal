@@ -225,7 +225,9 @@
 					let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}-add`;
 						if(id === productId){
 							//if item is in the cart, update qty count
-							item.qty += 1; 
+							if(item.qty<=4){
+								item.qty += 1; 
+							}
 							return item;
 						}	
 					});
