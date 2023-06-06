@@ -63,11 +63,7 @@
 		<div class="heading">
 			<h2>Wishlist</h2>
 		</div>
-		<div class="row pl-5 pr-5">
-			<div class="col-xs  col-sm-12  col-lg-2 filter-menu"  style="z-index:100;">
-				<h5>Filters</h5>
-			</div>
-			
+		<div class="row pl-5 pr-5">			
 			<div class="col-xs col-sm-12 col-lg-10">
 				<div class="container-fluid">
 					<div id="result-count"></div>
@@ -151,22 +147,15 @@
 						<div class="card-body p-0">`;
 				if(wishlistedItem[i].discount !== '0'){
 					let discountedPrice = wishlistedItem[i].price - Math.round(wishlistedItem[i].price* wishlistedItem[i].discount /100) ;
-					productCard += `<p class="price-striked">$${wishlistedItem[i].price}</p>`;
-					productCard += `<p class="discount">$${discountedPrice}</p>`;
+					productCard += `<p class="price"><span class="price-striked">₹${wishlistedItem[i].price}</span>`;
+					productCard += `<span class="price-calculated">$${wishlistedItem[i].price}</span></p>`;
 				}else{
-					productCard += `<p class="price">$${wishlistedItem[i].price}</p>`;
+					productCard += `<p><span class="price-calculated">$${wishlistedItem[i].price}</span></p>`;
 				}
 				productCard += `
-							<h6 class="ml-1 p-3">${wishlistedItem[i].name}</h6>	
-							<div class="icons">
-									<div class="add-to-cart" data-product-id="${productId}-${wishlistedItem[i].id}-add">
-										<input type="checkbox"  name="${productId}-${wishlistedItem[i].id}-add" data-product-id="${productId}-${wishlistedItem[i].id}-add">
-										<label for="${productId}-${wishlistedItem[i].id}-add">
-											Add&nbsp;to&nbsp;cart
-											<i class="fa-solid fa-cart-shopping" aria-hidden="true" onclick=""></i>
-										</label>
-									</div>
-								</div>
+							<h6 class="">${wishlistedItem[i].name}</h6>	
+							<div class="add-to-cart" data-product-id="${productId}-${wishlistedItem[i].id}-add">
+								<button class="btn3" name="${productId}-${wishlistedItem[i].id}-add" >Add&nbsp;to&nbsp;cart</button>
 							</div>
 						</div>
 						</div>
@@ -220,22 +209,22 @@
 			$('.add-to-cart').click(function(){
 				let productId = $(this).data('product-id');
 				
-					$('#cart-count').text(++cartCount);
-					let newItem = wishlistedItem.find(item => {
-						let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}-add`;
-						console.log("id ", id)
-						console.log("productId ", productId)
-						if(id === productId && (item.qty == undefined || item.qty == null)){
+				$('#cart-count').text(++cartCount);
+
+				let newItem = cartItem.find(item => {
+
+					let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}-add`;
+					console.log("id ", id,"     ","productId ", productId)
+						if(id === productId){
+							if(item.qty == undefined || item.qty == null){
 								item.qty = 1;
 								console.log("11",	item.qty );
-								
 							}else{
-								
 								item.qty += 1;
 							}
-							return id === productId;
+							return item;
 						}
-					);
+					});
 					console.log("newItem", newItem)
 					var existingItem = cartItem.find(item => item.id === newItem.id)
 					if(!existingItem ){
@@ -249,24 +238,15 @@
 						'fill':'#d60222',
 					})
 					
-				// }
-
 				console.log(cartCount)
 			});
-
-			
-			
-
 			var products = document.getElementById('products');
 			
 			$(document).ready(function() {
-				// Function to check viewport width and apply styles
 				function checkViewportWidth() {
 					var viewportWidth = $(window).width();
 
-					// Check if viewport width is less than 600px
 					if (viewportWidth <= 500) {
-						// Apply styles for small screens
 						$('#products>div').css({'margin':'12px '});
 						$('#products>div').css({
 						'border' : '2px solid #f1f2ff',
@@ -276,10 +256,8 @@
 					} 
 				}
 
-				// Call the function on page load
 				checkViewportWidth();
 
-				// Call the function whenever the window is resized
 				$(window).resize(function() {
 					checkViewportWidth();
 				});
@@ -302,37 +280,6 @@
 				'flex-wrap' :'wrap'
 
 			})
-			$('.filter-menu').append(html);
-			$('.filter-menu').css({
-				'display' : 'flex',
-				'flex-direction' : 'column',
-				'justify-content' : 'start'
-			});
-			$('.filter-menu div').css({
-				
-				// 'padding' : '10px 3px ',
-				'margin' : '2px',
-				'background - color':'#cecece',
-				'height' : '300px',
-			})
-
-			$('.filter-menu div ul').css({
-				'padding': '2px',
-			})
-			$('.filter-menu div ul li').css({
-				'display': 'flex',
-				'align-items':'center'
-			})
-
-			$('.filter-menu div input').css({
-				'margin':'0',
-				'margin': '4px 0',
-				'height':'20px',
-				'width': '20px',
-				'font-size' : '12px',
-			})
-		
-	
 			
 			var resultCount = ``
 			if(wishlistedItem.length > 0){
@@ -341,7 +288,7 @@
 
 			}else{
 				resultCount += `<div><p>No items in wishlist</span></p>
-					<a id="back-to-shop" class ="btn2" href="shop.html">Browse</a><div><div>`;
+					<a id="back-to-shop" class ="btn3" href="shop.html">Browse</a><div><div>`;
 			}
 
 			$('#result-count').append(resultCount);
