@@ -69,12 +69,14 @@
 		<div class="row">			
 			<div class="col-xs col-sm-12 col-lg-12">
 				<div class="container-fluid">
+					<div id="added-to-cart"></div>	
 					<div id="result-count"></div>
 					<div class="row" id="products"></div>
+					
 				</div>
 			</div>			
 		</div>
-	
+		
 	</section>
 
 	<footer  style="margin-top: 0;">
@@ -130,7 +132,6 @@
 				
 				if(wishlistedItem !== null){
 					for(let i=0; i<wishlistedItem.length; ++i){
-					console.log(wishlistedItem.length)
 				
 					let productId = wishlistedItem[i].src.split(".")[0].substr(4);
 					productCard += `
@@ -151,9 +152,9 @@
 				if(wishlistedItem[i].discount !== '0'){
 					let discountedPrice = wishlistedItem[i].price - Math.round(wishlistedItem[i].price* wishlistedItem[i].discount /100) ;
 					productCard += `<p class="price"><span class="price-striked">₹${wishlistedItem[i].price}</span>`;
-					productCard += `<span class="price-calculated">$${wishlistedItem[i].price}</span></p>`;
+					productCard += `<span class="price-calculated">₹${wishlistedItem[i].price}</span></p>`;
 				}else{
-					productCard += `<p><span class="price-calculated">$${wishlistedItem[i].price}</span></p>`;
+					productCard += `<p><span class="price-calculated">₹${wishlistedItem[i].price}</span></p>`;
 				}
 				productCard += `
 							<h6 class="">${wishlistedItem[i].name}</h6>	
@@ -183,16 +184,13 @@
 			$('.wishlist-icon').click(function(){
 				
 				let productId = $(this).data('product-id');
-				console.log(productId, this);
 
 				$(this).toggleClass('wishlisted');
 				let updatedWishList = wishlistedItem.filter((item)=>{
 					let id = `${item.src.split(".")[0].substr(4)}-${item.id}`;
-					console.log("productId",productId, "   ", "id", id);
 					return id !== productId;
 				});
 				$('#wishlist-count').text(--wishlistCount);
-				console.log(updatedWishList)
 				wishlistedItem =[...updatedWishList];
 				$(this).css({
 					'fill':'#ffffff',
@@ -207,6 +205,16 @@
 						card.remove();
 					});
 
+			});
+
+			$('#added-to-cart').click(function(){
+				let link = document.createElement("a");
+				link.href = "cart.html"; // Change to your URL
+				link.target = "_self"; // Open in new tab
+				link.rel = "noopener noreferrer"; // Security best practice
+				link.style.display = "none"; // Hide the anchor
+ 				document.body.appendChild(link);
+				link.click(); // Simulate click
 			});
 
 			$('.add-to-cart').click(function(){
@@ -235,16 +243,15 @@
 						}	
 					});
 
-					console.log("existingItem", existingItem)
-
+					let addedToCartDiv = document.getElementById("added-to-cart");
+					addedToCartDiv.innerHTML = `Item added to cart successfully Go to cart <i class="fa-solid fa-arrow-right"></i>`
+					addedToCartDiv.style.backgroundColor= "#297d6420";
 					if(!existingItem ){
 						// if item not in cart, assign qty : 1;
 						newItem.qty = 1;
 						cartItem.push(newItem);
 					}
-					console.log("1",existingItem)
-					console.log("2",cartItem)
-					console.log("3",newItem)
+
 					localStorage.setItem('cart', JSON.stringify(cartItem));
 				
 
@@ -252,8 +259,8 @@
 					'fill':'#d60222',
 				})
 				
-				console.log(cartCount)
-			});
+ 			});
+
 			var products = document.getElementById('products');
 			
 			$(document).ready(function() {

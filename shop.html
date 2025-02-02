@@ -228,17 +228,13 @@
 					
 					let newItem = productArray.find(item => {
 						let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}-add`;
-						console.log("id ", id)
-						console.log("productId ", productId)
 						if(id === productId){
 							if(item.qty == undefined || item.qty == null){
 								item.qty = 1;
-								console.log("11",	item.qty );
 								
 							}else{
 								
 								item.qty += 1;
-								console.log("12",	item.qty );
 							}
 							return id === productId;
 						}
@@ -274,9 +270,7 @@
 						return id === productId}
 					);
 			
-					console.log("1",wishlistedItem)
 					wishlistedItem.push(newItemWishlited);
-					console.log("2",wishlistedItem)
 
 					localStorage.setItem('wishlist', wishlistedItem);
 	
@@ -298,7 +292,6 @@
 					})
 				}
 				localStorage.setItem('wishlist', JSON.stringify(wishlistedItem));
-				console.log(wishlistcount)
 			});
 
 			
@@ -308,9 +301,7 @@
 				if(wishlistedItem!=null){
 
 					for(let i=0; i<wishlistedItem.length; i++){
-						console.log(wishlistedItem[i])
 						let productId = `${wishlistedItem[i].src.split(".")[0].substr(4)}-${wishlistedItem[i].id}`; 
-						console.log(productId)
 
 						$(`.wishlist-icon[data-product-id="${productId}"]`).addClass('wishlisted').css({
 							'fill':'#d60222',
@@ -320,9 +311,7 @@
 				if(cartItem!==null){
 
 					for(let i=0; i<cartItem.length; i++){
-						console.log(cartItem)
 						let productId = `${cartItem[i]?.src.split(".")[0].substr(4)}-${cartItem[i]?.id}`; 
-						console.log(productId)
 
 						$(`.add-to-cart [data-product-id="${productId}"]`).addClass('added-to-cart').css({
 							'fill':'#d60222',

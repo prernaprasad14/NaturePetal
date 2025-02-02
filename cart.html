@@ -143,7 +143,6 @@
 					totalPrice += (cartItems[i].price - (cartItems[i].price * cartItems[i].discount / 100)) * cartItems[i].qty;
 					
 				}
-				console.log(totalPrice)
 				return totalPrice;
 			}
 			var totalPrice=0;
@@ -171,17 +170,21 @@
 									if(cart[i].qty >= 5){
 										productCard += `<div><p class="message">Max limit reached!</p></div>`;
 									}
-
-						
+									
 									let discountedPrice = (cart[i]?.price - Math.round(cart[i]?.price * cart[i]?.discount /100))  * cart[i].qty ;
-
-										productCard += `<div style="display:flex; flex-direction:row;">
-											<p ><span class="discount">${cart[i]?.discount}%</span></p>`;
-										productCard += `<p class="price"><span class="price-striked">₹${cart[i]?.price * cart[i].qty}</span>
-											<span class="price-calulated">₹${discountedPrice}</span></p>
-								</div>
-								</div>				
-							</div>`
+									
+									
+									productCard += `<div style="display:flex; flex-direction:row;">
+													<p ><span class="discount">${cart[i]?.discount}%</span></p>`;
+									if(cart[i]?.discount != 0){
+										productCard += `<p class="price"><span class="price-striked">₹${cart[i]?.price * cart[i].qty}</span>`
+									}else{
+										productCard += `<p class="price"><span class="price-striked">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>`
+									}
+									productCard += `<p class="price" ><span class="price-calulated">₹${discountedPrice}</span></p>
+														</div>
+														</div>				
+													</div>`
 							totalPrice += discountedPrice;
 						}
 					}else{
@@ -218,9 +221,7 @@
 			if(cartItems!=null){
 
 				for(let i=0; i<cartItems.length; i++){
-					console.log(cartItems[i])
 					let productId = `${cartItems[i]?.src.split(".")[0].substr(4)}-${cartItems[i]?.id}`; 
-					console.log(productId)
 
 					$(`.add-to-cart[data-product-id="${productId}"]`).addClass('added-to-cart').css({
 						'fill':'#d60222',
@@ -229,14 +230,12 @@
 			}
 
 			$('.move-to-wishlist').click(function() {
-				console.log("move-to-wishlist called", this);
 				let productId = $(".remove-from-cart").data("product-id");
 				--cartCount;
 				$(`#cart-count`).text(cartCount);
 				let movedItem;
 				var updatedCart = cart.filter((item)=>{
 					let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}`;
-					console.log(id=== productId)
 					if(id===productId){
 						movedItem = item;
 					}
@@ -244,7 +243,6 @@
 				});
 			let updatedWishlist = JSON.parse(localStorage.getItem('wishlist'));
 			updatedWishlist.push(movedItem);
-			console.log("updatedWishlist",updatedWishlist)
 			
 			var card = $(this).parent().parent().closest('div');
 				card.css('opacity', '1');
@@ -259,11 +257,9 @@
 			});
 
 		$('.remove-from-cart').click(function() {
-            console.log("remove-from-cart called", this)
 			let productId = $(".remove-from-cart").data("product-id");
 			var updatedCart = cart.filter((item)=>{
 				let id = `${item?.src.split(".")[0].substr(4)}-${item?.id}`;
-				console.log(id=== productId)
 				return id !== productId;
 			});
 			--cartCount;
@@ -275,9 +271,6 @@
 					card.animate({ height: "200px", opacity: 0}).animate({height: "170px" });
 					card.remove();
 				});
-
-			console.log(updatedCart);
-			console.log(cartItem);
 
 			localStorage.setItem('cart', JSON.stringify(updatedCart));
         });

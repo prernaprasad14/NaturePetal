@@ -316,14 +316,35 @@ body{
 #shop .product-card-container .price-striked,
 #wishlist .product-card-container .price-striked,
 #cart .product-card-container .price-striked{
-	align-items: center;
+	align-items: end;
 	font-size: 12px;
 	padding: 1px;
 	display: inline-block;
 	text-decoration: line-through;
 	display: inline-block;
 	color: rgb(200, 80, 104);
+	/* text-align: end; */
 } 
+#added-to-cart {
+	background-color: #ffffff20; 
+	color: #297d64;
+	border-radius: 5px;
+	padding: 6px 10px;
+
+}
+#added-to-cart:hover{
+	background-color: #297d6420; 
+	color: #075532;;
+	transform: scale(1.001);
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 6px 10px;
+
+}
+#cart-products{
+	background-color: rgba(233, 235, 235, 0.29);
+	border-radius: 5px;
+}
 .baguetteBox-button {
     background-color: transparent !important;
 }
