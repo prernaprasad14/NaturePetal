@@ -8,6 +8,43 @@ body{
 	-ms-user-select:none;
 	user-select:none;
 }
+
+#main-loader{
+	background-color: #cde6cd3f;
+	margin:auto;
+	width: 100vw;
+	height: 100vh;
+	z-index: 5000;
+	position: fixed; 
+    top: 0;
+    left: 0;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader {
+	margin:auto;
+	width: 90px;
+	height: 90px;
+	border: 16px solid #09555228;
+	border-top: 16px solid #095553;
+ 	border-radius: 50%;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 3s ease-in-out forwards;
+}
 .gallery-block{
 	padding: 30px 10px;
 }
@@ -127,7 +164,7 @@ body{
     font-family: 'Glyphicons Halflings';
     content: '\e003';
     pointer-events: none;
-    z-index: 9000;
+    z-index: 100;
     transition: 0.4s;
 }
 .tz-gallery .lightbox:after {
@@ -145,9 +182,9 @@ body{
 .tz-gallery .lightbox:hover:before {
     opacity: 1;
 }
-#cart{
+#cart, #wishlist{
 	min-height:80vh;
-	background-color: #f7f7f2;
+	background-color: #fcfcfb;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -157,10 +194,7 @@ body{
 	display: flex;
 	flex-direction: column;
 }
-	/* #wishlist .product-card-container{
-		border: 2px solid rgb(244, 244, 244);
-		padding-bottom: 3px;
-	} */
+
 #shop .product-card-container svg,
 #wishlist .product-card-container svg,
 #cart-products .product-card-container svg {
@@ -174,9 +208,6 @@ body{
 	transform: scale(1.2);
 	transition: all 0.3s ease-in-out;
 }
-#cart{
-	background-color: #fcfcfb;
-}
 #cart-products .product-card-container{
 	display: flex;
 	align-items: baseline ;
@@ -184,7 +215,7 @@ body{
 	margin: 0 7px 5px 7px;
 	border-radius: 2px;
 	padding: 10px;
-	border-bottom :2px solid rgb(227, 227, 227);
+	/* border-bottom :2px solid rgb(227, 227, 227); */
 }
 #cart-products .product-card-container .quantity{
 	display: flex;
@@ -233,7 +264,7 @@ body{
 	height : 375px;
 	min-height: 385px;
 	padding: 0 7px;
-	border-bottom: 2px solid rgb(244, 244, 244);
+	/* border-bottom: 2px solid rgb(244, 244, 244); */
 	background-color : #FCFCFC;
 	border-radius : 0 0 0 3px;
 }
@@ -367,7 +398,6 @@ body{
 #maincarousel .carousel-control a:hover{
 	color: cadetblue !important;
 }
-
 #first-half > div:last-of-type{
 	position: absolute;
 	top:40px;
@@ -1219,7 +1249,7 @@ footer .rights .text-center{
 		height : 375px;
 		min-height: 385px;
 		padding: 0 7px;
-		border-bottom: 2px solid rgb(244, 244, 244);
+		/* border-bottom: 2px solid rgb(244, 244, 244); */
 		background-color : #FCFCFC;
 		border-radius : 0 0 0 3px;
 	}

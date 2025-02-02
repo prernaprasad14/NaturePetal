@@ -15,6 +15,9 @@
 </head>
 </head>
 <body data-spy="scroll" data-target="#navbarResponsive">
+	<div id="main-loader">
+		<div class="loader"></div>
+	</div>
     <div id="home">
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark" >
 			<a href="index.html" class="logo-nav">
@@ -193,9 +196,9 @@
 			
             $('#cart-products').append(productCard);
 			$('#cart-count').parent().css({
-				'margin-bottom':'15px',
+				'padding':'2px',
+				'margin' :'5px 2px',
 				'background-color' : '#F8F9F6',
-				'padding':'3px',
 				'font-weight' : '600',
 				'color' : '#676869',
 				'font-size' : '16px',
@@ -203,6 +206,7 @@
 				'justify-content' : 'center',
 				'border-radius' : '4px',
 			});
+
 			$(`.product-card-container .message`).css({
 							'visibility': 'hidden',
 							'font-size' : '10px',
@@ -359,6 +363,8 @@
 	
 
 	</script>
+	<script src="./js/loader.js"></script>
+
 </body>
 
 </html>
